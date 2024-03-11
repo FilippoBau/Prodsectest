@@ -1,5 +1,13 @@
 {
   "extends": ["config:best-practices"],
+  "packageRules": [
+    {
+      "enabled": false,
+      "groupName": "everything",
+      "matchPackagePatterns": ["*"],
+      "separateMajorMinor": false
+    }
+  ],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["Securiuuuty"]
