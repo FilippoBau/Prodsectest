@@ -1,1 +1,10 @@
-
+name: Renovate-INTEROP
+on:
+  workflow_dispatch:
+jobs:
+  call-workflow:
+    uses: CorrVec/example-renovate-blueprint/.github/workflows/renovate-auth.yml@main
+    with:
+      configurationFile: "Interop/renovate.json"
+  #secrets: inherit
+  #DA VALUTARE SINGOLA PIPELINE CON PIU JOBS(UN JOB PER OGNI PRODOTTO) CON CLAUSOLA 'IF: ALWAYS()'
