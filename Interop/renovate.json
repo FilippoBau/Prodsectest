@@ -1,12 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-    "packageRules": [
-    {
-      "enabled": false,
-      "groupName": "everything",
-      "matchPackagePatterns": ["*"],
-      "separateMajorMinor": false
-    }
-  ],
   "repositories": ["FilippoBau/interop-be-monorepo","FilippoBau/interop-fe-commons","FilippoBau/interop-fe-probing","FilippoBau/interop-be-probing-eservice-operations"]
 }
