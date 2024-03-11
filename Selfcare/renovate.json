@@ -1,13 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-ms-core","FilippoBau/selfcare-pnpg-dashboard-frontend"],
-  "packageRules": [
-    {
-      "enabled": false,
-      "groupName": "everything",
-      "matchPackagePatterns": ["*"],
-      "separateMajorMinor": false
-    }
-  ]
+  "repositories": ["FilippoBau/selfcare-pnpg-dashboard-frontend"]
 }
     
