@@ -1,7 +1,5 @@
 {
   "extends": ["config:best-practices"],
-  "username": "renovate-bot",
-  "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["Security"]
