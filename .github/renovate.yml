@@ -1,1 +1,44 @@
+name: Renovate
+on:
+  workflow_call:
+    inputs:
+      configurationFile:
+        description: "Configuration file"
+        required: true
+        type: string
+concurrency: renovate
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        # Don't waste time starting Renovate if JSON is invalid
+      - name: Validate Renovate JSON
+        run: jq type ${{CONF}}
+        env:
+          CONF: ${{ inputs.configurationFile }}
+      - name: Get token
+        id: get_token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          installation_id: ${{ secrets.INSTALLATION_ID }}
+          private_key: ${{ secrets.CLIENT_SECRET }}
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v40.1.1
+        env:
+          # Username for GitHub authentication (should match GitHub App name + [bot])
+          RENOVATE_USERNAME: "superseb-demo-renovate[bot]"
+          # Git commit author used, must match GitHub App
+          RENOVATE_GIT_AUTHOR: "superseb-demo-renovate <121964725+superseb-demo-renovate[bot]@users.noreply.github.com>"
+          # Use GitHub API to create commits (this allows for signed commits from GitHub App)
+          RENOVATE_PLATFORM_COMMIT: "true"
+          # Onboarding not needed for self hosted
+          RENOVATE_ONBOARDING: "false"
+        with:
+          configurationFile: ${{ inputs.configurationFile }}
+          token: '${{ steps.get_token.outputs.token }}'
 
+
+    
