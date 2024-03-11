@@ -36,6 +36,7 @@ jobs:
           #RENOVATE_PLATFORM_COMMIT: "true"
           # Onboarding not needed for self hosted
           RENOVATE_ONBOARDING: "false"
+          LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
