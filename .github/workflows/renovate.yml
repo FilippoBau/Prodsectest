@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4.1.1
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
-        run: jq type ${{CONF}}
+        run: jq type $CONF
         env:
           CONF: ${{ inputs.configurationFile }}
       - name: Get token
