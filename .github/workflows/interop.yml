@@ -1,9 +1,9 @@
-name: interop
+name: Interop
 on:
   workflow_dispatch:
 jobs:
   call-workflow:
-    uses: FilippoBau/.github/workflows/renovate.yml
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
       configurationFile: "Interop/renovate.json"
   #secrets: inherit
