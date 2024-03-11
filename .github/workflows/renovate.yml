@@ -31,7 +31,7 @@ jobs:
           # Username for GitHub authentication (should match GitHub App name + [bot])
           RENOVATE_USERNAME: "renovate-auth[bot]"
           # Git commit author used, must match GitHub App
-          RENOVATE_GIT_AUTHOR: "Renovate <853595+renovate-auth[bot]@users.noreply.github.com>"
+          RENOVATE_GIT_AUTHOR: "Renovate-auth[bot] <853595+renovate-auth[bot]@users.noreply.github.com>"
           # Use GitHub API to create commits (this allows for signed commits from GitHub App)
           #RENOVATE_PLATFORM_COMMIT: "true"
           # Onboarding not needed for self hosted
