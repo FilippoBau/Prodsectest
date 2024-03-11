@@ -7,7 +7,7 @@
       "matchPackagePatterns": ["*"],
       "separateMajorMinor": false
     }
-  ]
+  ],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["Skjadsbgfaljsfljauuty"]
