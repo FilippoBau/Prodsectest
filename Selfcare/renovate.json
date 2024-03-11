@@ -1,1 +1,4 @@
-
+{
+  "extends": ["github>FilippoBau/Prodsectest"],
+  "repositories": []
+}
