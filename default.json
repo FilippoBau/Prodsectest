@@ -2,6 +2,6 @@
   "extends": ["config:best-practices"],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["Seccodsnkvaksvurity"]
+    "labels": ["Security"]
   }
 }
