@@ -1,9 +1,9 @@
-name: Renovate-SELFCARE
+name: Selfcare
 on:
   workflow_dispatch:
 jobs:
   call-workflow:
-    uses: FilippoBau/.github/renovate.yml
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
       configurationFile: "Selfcare/renovate.json"
   #secrets: inherit
