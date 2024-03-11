@@ -6,5 +6,5 @@ jobs:
     uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
       configurationFile: "Interop/renovate.json"
-  #secrets: inherit
+    secrets: inherit
   #DA VALUTARE SINGOLA PIPELINE CON PIU JOBS(UN JOB PER OGNI PRODOTTO) CON CLAUSOLA 'IF: ALWAYS()'
