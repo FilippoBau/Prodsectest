@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-ms-core","FilippoBau/selfcare-onboarding"]
+  "repositories": ["FilippoBau/selfcare-ms-core","FilippoBau/selfcare-pnpg-dashboard-frontend"]
 }
