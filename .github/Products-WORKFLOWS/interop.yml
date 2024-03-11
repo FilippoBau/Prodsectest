@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   call-workflow:
-    uses: CorrVec/example-renovate-blueprint/.github/workflows/renovate-auth.yml@main
+    uses: FilippoBau/.github/renovate.yml
     with:
       configurationFile: "Interop/renovate.json"
   #secrets: inherit
