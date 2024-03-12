@@ -26,7 +26,7 @@ jobs:
           installation_id: ${{ secrets.INSTALLATION_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v40.1.1
+        uses: renovatebot/github-action@v40.1.4
         env:
           # Username for GitHub authentication (should match GitHub App name + [bot])
           RENOVATE_USERNAME: "renovate-auth[bot]"
