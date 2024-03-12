@@ -2,6 +2,7 @@
   "extends": ["config:best-practices"],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["Security"]
+    "labels": ["Product Security"],
+    "commitMessageSuffix": "[Product Security]"
   }
 }
