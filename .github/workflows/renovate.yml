@@ -37,6 +37,7 @@ jobs:
           # Onboarding not needed for self hosted
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "optional"
+          RENOVATE_PR_HOURLY_LIMIT: 0
           #RENOVATE_DRY_RUN: "full"
           #LOG_LEVEL: "DEBUG"
         with:
