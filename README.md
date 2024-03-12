@@ -1,1 +1,1 @@
-# Prodsectest
+# Test - Self-hosted Renovate solution
