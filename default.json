@@ -4,5 +4,6 @@
     "enabled": true,
     "labels": ["Product Security"],
     "commitMessageSuffix": "[Product Security]"
-  }
+  },
+  "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"]
 }
