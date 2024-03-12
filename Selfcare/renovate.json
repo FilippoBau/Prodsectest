@@ -1,5 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-pnpg-dashboard-frontend"]
+  "repositories": ["FilippoBau/selfcare-pnpg-dashboard-frontend","FilippoBau/selfcare-dashboard-frontend"]
 }
     
