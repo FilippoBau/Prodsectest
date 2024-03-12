@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/interop-be-monorepo","FilippoBau/interop-fe-commons","FilippoBau/interop-fe-probing","FilippoBau/interop-be-probing-eservice-operations"],
+  "repositories": ["CorrVec/interop-be-monorepo","CorrVec/pdnd-interop-platform-deployment","CorrVec/interop-qa-tests"]
 }
