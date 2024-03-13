@@ -1,16 +1,12 @@
 name: Check-and-Activate-Dependabot-Alerts
-
 on:
   workflow_dispatch:
-
 jobs:
   checker:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-lates
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
       - name: Get token
         id: get_token
         uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
@@ -18,7 +14,6 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           installation_id: ${{ secrets.INSTALLATION_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-
       - name: Get Dependabot alerts status
         id: dependabot-status
       - run: |
