@@ -1,0 +1,36 @@
+name: Check and Activate Dependabot Alerts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-activate-dependabot-alerts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Get token
+        id: get_token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          installation_id: ${{ secrets.INSTALLATION_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Get Dependabot alerts status
+        id: dependabot-status
+        run: |
+          status=$(curl -s -H "Authorization: Bearer ${{ steps.get_token.outputs.token }}" \
+                   -H "Accept: application/vnd.github.v3+json" \
+                   https://api.github.com/repos/${{ github.repository }}/vulnerability-alerts)
+          echo "::set-output name=status::$(echo $status | jq '.enabled')"
+
+      - name: Activate Dependabot alerts if not enabled
+        if: steps.dependabot-status.outputs.status == 'false'
+        run: |
+          curl -X PUT \
+               -H "Authorization: Bearer ${{ steps.get_token.outputs.token }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }}/vulnerability-alerts -d '{"enabled":true}'
