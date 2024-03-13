@@ -16,7 +16,7 @@ jobs:
         uses: actions/create-github-app-token@v1 # v1.7.0
         with:
           app-id: ${{ secrets.APP_ID }}
-          installation-id: ${{ secrets.INSTALLATION_ID }}
+          owner: ${{ github.repository_owner }}
           private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Get Dependabot alerts status
