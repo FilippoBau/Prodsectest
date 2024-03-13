@@ -28,7 +28,7 @@ jobs:
 
 
       - name: Activate Dependabot alerts if not enabled
-        if: steps.dependabot-status.outputs.status == '403'
+        if: ${{steps.dependabot-status.outputs.status}} == "403"
         run: |
             curl -L \
                 -X PUT \
