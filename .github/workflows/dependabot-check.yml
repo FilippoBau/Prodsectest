@@ -13,7 +13,7 @@ jobs:
 
       - name: Get token
         id: get_token
-        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        uses: actions/create-github-app-token@v1 # v1.7.0
         with:
           app_id: ${{ secrets.APP_ID }}
           installation_id: ${{ secrets.INSTALLATION_ID }}
