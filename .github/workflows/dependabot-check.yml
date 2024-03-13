@@ -1,10 +1,10 @@
-name: Check and Activate Dependabot Alerts
+name: Check-and-Activate-Dependabot-Alerts
 
 on:
   workflow_dispatch:
 
 jobs:
-  check-activate-dependabot-alerts:
+  checker:
     runs-on: ubuntu-latest
 
     steps:
