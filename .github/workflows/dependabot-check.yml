@@ -30,9 +30,9 @@ jobs:
       - name: Activate Dependabot alerts if not enabled
         if: steps.dependabot-status.outputs.status == 403
         run: |
-          curl -X PUT \
+          curl -X POST \
                -H "Authorization: Bearer $GH_TOKEN" \
                -H "Accept: application/vnd.github.v3+json" \
-               https://api.github.com/repos/FilippoBau/selfcare-ms-core/dependabot/alerts -d '{"enabled":true}'
+               https://api.github.com/repos/FilippoBau/selfcare-ms-core/dependabot/alerts -d '{"vulnerability_alerts_enabled":true}'
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
