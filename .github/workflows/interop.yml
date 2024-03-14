@@ -7,4 +7,4 @@ jobs:
     with:
       configurationFile: "Interop/renovate.json"
     secrets: inherit
-  #DA VALUTARE SINGOLA PIPELINE CON PIU JOBS(UN JOB PER OGNI PRODOTTO) CON CLAUSOLA 'IF: ALWAYS()'
+
