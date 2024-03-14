@@ -39,7 +39,8 @@ jobs:
           RENOVATE_REQUIRE_CONFIG: "optional"
           RENOVATE_PR_HOURLY_LIMIT: 0
           RENOVATE_PR_CONCURRENT_LIMIT: 0
-          #RENOVATE_DRY_RUN: "full"
+          # Put dryrun option in the caller pipeline as input
+          RENOVATE_DRY_RUN: "full"
           #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
