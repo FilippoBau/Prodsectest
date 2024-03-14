@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   call-workflow:
-    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
     with:
       configurationFile: "Selfcare/renovate.json"
     secrets: inherit
-  #DA VALUTARE SINGOLA PIPELINE CON PIU JOBS(UN JOB PER OGNI PRODOTTO) CON CLAUSOLA 'IF: ALWAYS()'
