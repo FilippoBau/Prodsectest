@@ -5,6 +5,7 @@ jobs:
   call-workflow:
     uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
-      configurationFile: "Interop/renovate.json"
+      #### REMEMBER TO CHANGE ######
+      configurationFile: "Interop-temp/renovate.json"
     secrets: inherit
 
