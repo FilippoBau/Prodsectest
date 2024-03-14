@@ -1,0 +1,3 @@
+{
+  "extends": ["github>FilippoBau/Prodsectest"],
+  "repositories": ["FilippoBau/interop-be-monorepo"]}
