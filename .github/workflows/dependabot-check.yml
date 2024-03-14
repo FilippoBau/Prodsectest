@@ -27,7 +27,7 @@ jobs:
         id: read_renovate
         run: |
           repositories=$(jq -r '.repositories[]' $CONF)
-          echo $reposutories
+          echo $repositories
           echo "repositories=$repositories" >> $GITHUB_OUTPUT
         env:
           CONF: ${{ inputs.configurationFile }}
