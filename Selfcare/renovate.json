@@ -1,6 +1,6 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-pnpg-dashboard-frontend","FilippoBau/selfcare-dashboard-frontend"],
+  "repositories": ["FilippoBau/selfcare-ms-core"],
   "packageRules": [
     {
       "enabled": false,
