@@ -41,7 +41,7 @@ jobs:
           RENOVATE_PR_CONCURRENT_LIMIT: 0
           # Put dryrun option in the caller pipeline as input
           RENOVATE_DRY_RUN: "full"
-          RENOVATE_LOG_FILE: "results.json"
+          RENOVATE_LOG_FILE: 'results.json'
           #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
