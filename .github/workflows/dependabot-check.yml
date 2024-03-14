@@ -2,6 +2,11 @@ name: Check-and-Activate-Dependabot-Alerts
 
 on:
   workflow_dispatch:
+    inputs:
+      configurationFile:
+        description: "Configuration file"
+        required: true
+        type: string
 
 jobs:
   checker:
@@ -19,19 +24,28 @@ jobs:
           owner: ${{ github.repository_owner }}
           private-key: ${{ secrets.PRIVATE_KEY }}
 
-      - name: Get Dependabot alerts status
-        id: dependabot-status
+      - name: Read repo
+        id: read_renovate
         run: |
-            status=$(curl -s -o /dev/null -w "%{http_code}" -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/FilippoBau/selfcare-ms-core/dependabot/alerts)
-            echo "status=$status" >> "$GITHUB_OUTPUT"
+          repositories=$(jq -r '.repositories[]' $CONF)
+          echo "::set-output name=repositories::$repositories"
+        env:
+          CONF: ${{ inputs.configurationFile }}
+
+      - name: Iterate over repositories
+        id: iterate_repositories
+        run: |
+          for repo in ${{ steps.read_renovate.outputs.repositories }}; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/$repo/dependabot/alerts")
+            echo "::set-output name=status=$status"
+          done
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
-    
 
       - name: Activate Dependabot alerts if not enabled
         if: ${{steps.dependabot-status.outputs.status== '403'}}
         run: |
-          curl -L -X PUT -i -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/FilippoBau/selfcare-ms-core/vulnerability-alerts
+          curl -L -X PUT -i -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/$repo/vulnerability-alerts
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
 
@@ -39,9 +53,8 @@ jobs:
         if: ${{steps.dependabot-status.outputs.status== '200'}}
         id: dependabot-pr-status
         run: |
-            status=$(curl -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/FilippoBau/selfcare-ms-core/automated-security-fixes | jq .enabled)
-            echo ${{steps.dependabot-status.outputs.status}} 
-            echo "status=$status" >> "$GITHUB_OUTPUT"
+            status=$(curl -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/$repo/automated-security-fixes | jq .enabled)
+            echo "::set-output name=status=$status"
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
 
@@ -49,7 +62,6 @@ jobs:
       - name: Desable Dependabot Security Updates Status
         if: ${{ steps.dependabot-status.outputs.status== '200'&& steps.dependabot-pr-status.outputs.status=='true'}}
         run: |
-          curl -L -X DELETE -i -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/FilippoBau/selfcare-ms-core/automated-security-fixes
-          echo ${{steps.dependabot-pr-status.outputs.status}} 
+          curl -L -X DELETE -i -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/$repo/automated-security-fixes
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
