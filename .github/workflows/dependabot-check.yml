@@ -28,7 +28,10 @@ jobs:
         run: |
           repositories=$(jq -r '.repositories[]' $CONF)
           echo $repositories
-          echo "repositories=[$repositories]" >>$GITHUB_OUTPUT
+          for element in $repositories
+          do
+            echo "repositories=$element" >> "$GITHUB_OUTPUT"
+          done
         env:
           CONF: ${{ inputs.configurationFile }}
 
