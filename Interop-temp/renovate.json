@@ -3,10 +3,35 @@
   "repositories": ["FilippoBau/interop-be-monorepo"],
   "packageRules": [
     {
-      "enabled": false,
-      "groupName": "everything",
-      "matchPackagePatterns": ["*"],
-      "separateMajorMinor": false
+      "groupName": "all digest updates",
+      "groupSlug": "all-digest",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "digest"
+      ]
+    },
+    {
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "groupName": "all major dependencies",
+      "groupSlug": "all-major-patch",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ]
     }
   ]
 }
