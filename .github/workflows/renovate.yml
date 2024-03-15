@@ -40,18 +40,18 @@ jobs:
           RENOVATE_PR_HOURLY_LIMIT: 0
           RENOVATE_PR_CONCURRENT_LIMIT: 0
           # Put dryrun option in the caller pipeline as input
-          RENOVATE_DRY_RUN: "full"
-          RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
+          #RENOVATE_DRY_RUN: "full"
+          #RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-artifact
-          path: /tmp/renovate/results.json
-          retention-days: 5
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: my-artifact
+      #    path: /tmp/renovate/results.json
+      #    retention-days: 5
 
 
     
