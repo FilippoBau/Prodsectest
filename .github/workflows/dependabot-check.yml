@@ -31,18 +31,17 @@ jobs:
           for repo in ${repositories[@]}; do
             echo '1'
             echo 'test'
-            resp= $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/vulnerability-alerts || true )
+            status = $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/vulnerability-alerts --silent || true )
             echo "test"
-            status=$(jq -r '.message' $resp)
             echo $status
-            if [ "$status" -eq 404 ]; then
+            if [ "$status" = "gh: Vulnerability alerts are disabled. (HTTP 404)" ]; then
               echo '2'
               gh api --method PUT -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/vulnerability-alerts
             else
               echo '3'
               status=$(gh api --method GET -H "Accept: application/vnd.github.v3+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/automated-security-fixes | jq -r '.enabled')
               if [ "$status" = "true" ]; then
-                echo '4'
+                echo $status
                 gh api --method DELETE -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/automated-security-fixes
               fi
             fi
