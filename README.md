@@ -5,7 +5,7 @@
 - [x] token expiration workaround 
 - [ ] matrix strategy
 - [ ] increasing performance
-- [ ] Spegnere DevDependencies
+- [x] Spegnere DevDependencies
 - [ ] Settiamo a 5 il limite ConcurrentLimit e a 0 PrHourly
 - [ ] Cambiare label in ProdSec e togliere le quadre nel nome
 - [ ] Parametrizzare pipeline renovate.yml
