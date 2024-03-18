@@ -1,5 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/interop-be-monorepo"],
-  "ignoreDeps": ["devDependencies"]
+  "repositories": ["FilippoBau/interop-be-monorepo"]
 }
