@@ -2,8 +2,8 @@
   "extends": ["config:best-practices"],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["Product Security"],
-    "commitMessageSuffix": "[Product Security]"
+    "labels": ["ProdSec"],
+    "commitMessageSuffix": " "
   },
   "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"]
 }
