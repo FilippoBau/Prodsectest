@@ -9,7 +9,7 @@ on:
       dirtyRun:
         description: "Run renovate in DirtyRun mode"
         required: false
-        default: "none"
+        default: "null"
         type: string
 concurrency: renovate
 jobs:
@@ -46,7 +46,7 @@ jobs:
           RENOVATE_PR_CONCURRENT_LIMIT: 5
           
           # Dirty run configuration
-          RENOVATE_DRY_RUN: ${{inputs.dirtyRun ||'none'}}
+          RENOVATE_DRY_RUN: ${{inputs.dirtyRun ||'null'}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           #LOG_LEVEL: "DEBUG"
         with:
