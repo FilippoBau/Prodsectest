@@ -3,9 +3,7 @@
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["ProdSec"],
-    "labels": {
-      "color": "red"
-    },
+    "color": "red",
     "commitMessageSuffix": " "
   },
   "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
