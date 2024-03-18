@@ -1,4 +1,13 @@
-"packageRules": [
+{
+    "extends": ["config:best-practices"],
+    "vulnerabilityAlerts": {
+        "enabled": true,
+        "labels": ["ProdSec"],
+        "commitMessageSuffix": " "
+    },
+    "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
+    "ignoreDeps": ["devDependencies"]
+    "packageRules": [
     {
       "enabled": false,
       "groupName": "everything",
@@ -6,3 +15,4 @@
       "separateMajorMinor": false
     }
   ]
+}
