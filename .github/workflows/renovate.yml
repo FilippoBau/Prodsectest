@@ -6,6 +6,11 @@ on:
         description: "Configuration file"
         required: true
         type: string
+      dirtyRun:
+        description: "Run renovate in DirtyRun mode"
+        required: false
+        default: "none"
+        type: string
 concurrency: renovate
 jobs:
   renovate:
@@ -39,19 +44,21 @@ jobs:
           RENOVATE_REQUIRE_CONFIG: "optional"
           RENOVATE_PR_HOURLY_LIMIT: 0
           RENOVATE_PR_CONCURRENT_LIMIT: 5
-          # Put dryrun option in the caller pipeline as input
-          #RENOVATE_DRY_RUN: "full"
-          #RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
+          
+          # Dirty run configuration
+          RENOVATE_DRY_RUN: ${{inputs.dirtyRun}}
+          RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
-      #- name: Upload Artifact
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: my-artifact
-      #    path: /tmp/renovate/results.json
-      #    retention-days: 5
+      - name: Upload Artifact
+        if: ${{inputs.dirtyRun == "full"}}
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: /tmp/renovate/results.json
+          retention-days: 5
 
 
     
