@@ -7,6 +7,6 @@ jobs:
     with:
       #### REMEMBER TO CHANGE ######
       configurationFile: "Interop-temp/renovate.json"
-      dirtyRun: "full"
+      #dirtyRun: "full"
     secrets: inherit
 
