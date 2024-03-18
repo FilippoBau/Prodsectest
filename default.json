@@ -6,16 +6,10 @@
     "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
     "commitMessageSuffix": " "
   },
-  "labels": {
-    "ProdSec": {
-      "color": "red"
-    }
-  },
   "packageRules": [
     {
       "matchUpdateTypes": ["devDependencies"],
-      "automerge": false,
-      "ignoreUnstable": true
+       "enabled": false,
     }
   ]
 }
