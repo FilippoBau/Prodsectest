@@ -1,14 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
   "repositories": ["FilippoBau/interop-be-monorepo"],
-  "packageRules": [
-    {
-      "groupName": "All dependencies",
-      "groupSlug": "all-dep",
-      "matchPackagePatterns": [
-        "*"
-      ]     
-    }
-  ],
-  "separateMajorMinor": true
+  "ignoreDeps": ["devDependencies"]
 }
