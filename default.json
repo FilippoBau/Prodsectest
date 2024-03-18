@@ -4,12 +4,7 @@
     "enabled": true,
     "labels": ["ProdSec"],
     "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
-    "commitMessageSuffix": ""
+    "commitMessageSuffix": " "
   },
-  "packageRules": [
-    {
-      "matchDepTypes": ["devDependencies"],
-      "enabled": false
-    }
-  ]
+ "ignoreDeps": ["devDependencies"]
 }
