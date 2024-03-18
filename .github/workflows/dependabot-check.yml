@@ -31,7 +31,7 @@ jobs:
           for repo in ${repositories[@]}; do
             echo '1'
             echo 'test'
-            response=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/dependabot/alerts)
+            response=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/dependabot/alerts 2>&1)
             echo "test"
             echo $response
             status=$(echo "$response" | jq -r '.message')
