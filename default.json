@@ -3,13 +3,13 @@
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["ProdSec"],
-    "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
-    "commitMessageSuffix": " "
+    "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
+    "commitMessageSuffix": ""
   },
   "packageRules": [
     {
       "matchUpdateTypes": ["devDependencies"],
-       "enabled": false,
+      "enabled": false
     }
   ]
 }
