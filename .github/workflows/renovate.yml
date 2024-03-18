@@ -42,7 +42,7 @@ jobs:
           # Put dryrun option in the caller pipeline as input
           #RENOVATE_DRY_RUN: "full"
           #RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
-          LOG_LEVEL: "DEBUG"
+          #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
