@@ -45,5 +45,6 @@ jobs:
           done
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
+          CONF: ${{ inputs.configurationFile }}
 
      
