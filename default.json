@@ -3,8 +3,19 @@
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["ProdSec"],
+    "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
     "commitMessageSuffix": " "
   },
-  "prBodyNotes": ["link alla pagina confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
-  "ignoreDeps": ["devDependencies"]
+  "labels": {
+    "ProdSec": {
+      "color": "red"
+    }
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["devDependencies"],
+      "automerge": false,
+      "ignoreUnstable": true
+    }
+  ]
 }
