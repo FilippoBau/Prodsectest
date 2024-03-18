@@ -8,7 +8,7 @@
   },
   "packageRules": [
     {
-      "matchUpdateTypes": ["devDependencies"],
+      "matchDepTypes": ["devDependencies"],
       "enabled": false
     }
   ]
