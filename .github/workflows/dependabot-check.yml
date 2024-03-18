@@ -31,7 +31,7 @@ jobs:
           for repo in ${repositories[@]}; do
             echo '1'
             echo 'test'
-            status=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/vulnerability-alerts --silent || true)
+            status=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/$repo/vulnerability-alerts --silent 2>&1 || true)
             echo "test"
             echo $status
             if [ "$status" = "gh: Vulnerability alerts are disabled. (HTTP 404)" ]; then
