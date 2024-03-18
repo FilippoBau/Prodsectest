@@ -53,7 +53,7 @@ jobs:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
-        if: ${{inputs.dirtyRun}} == "full"
+        if: ${{inputs.dirtyRun == 'full'}}
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
