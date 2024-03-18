@@ -1,0 +1,8 @@
+"packageRules": [
+    {
+      "enabled": false,
+      "groupName": "everything",
+      "matchPackagePatterns": ["*"],
+      "separateMajorMinor": false
+    }
+  ]
