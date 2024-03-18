@@ -38,7 +38,7 @@ jobs:
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "optional"
           RENOVATE_PR_HOURLY_LIMIT: 0
-          RENOVATE_PR_CONCURRENT_LIMIT: 5
+          RENOVATE_PR_CONCURRENT_LIMIT: 0
           # Put dryrun option in the caller pipeline as input
           #RENOVATE_DRY_RUN: "full"
           #RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
