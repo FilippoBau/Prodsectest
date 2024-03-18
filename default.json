@@ -1,5 +1,6 @@
 {
   "extends": ["config:best-practices"],
+  "ignoreDeps": ["devDependencies"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["ProdSec"],
