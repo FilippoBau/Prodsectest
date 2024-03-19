@@ -8,5 +8,13 @@
     "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": " "
-  }
+  },
+  "packageRules": [
+      {
+        "enabled": false,
+        "matchDepTypes": [
+          "devDependencies"
+        ]
+      }
+    ]
 }
