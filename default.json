@@ -13,8 +13,9 @@
       {
         "enabled": false,
         "matchDepTypes": [
-          "devDependencies"
+          "devDependencies",
         ]
       }
-    ]
+    ], 
+  "rangeStrategy":"auto"
 }
