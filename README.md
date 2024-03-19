@@ -16,7 +16,7 @@
 - [ ] Modificare titolo PR Security secondo specifiche di Corrado
 
 - [ ] Chiudere PR di debendabot, prendendo lo user-id Filippo
-- [ ] On-Off del parametro dirty run nel workflow dispatch
+- [ ] On-Off del parametro dirty run nel workflow dispatch Filippo
 
 
 
