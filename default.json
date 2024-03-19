@@ -9,5 +9,5 @@
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": " "
   },
- "ignoreDeps": ["devDependencies"]
+ "ignoreDeps": ["devDependencies", ":pinDevDependencies"]
 }
