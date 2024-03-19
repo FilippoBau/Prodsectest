@@ -20,7 +20,7 @@
         "matchDepTypes": [
           "dependencies"
         ],
-        "rangeStrategy": "auto"
+        "rangeStrategy": "replace"
       }
     ]
 }
