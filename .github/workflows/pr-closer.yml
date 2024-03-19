@@ -29,7 +29,8 @@ jobs:
           repositories=$(jq -r '.repositories[]' $CONF)
           echo $repositories
           for repo in ${repositories[@]}; do
-          
+            PRS=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/FilippoBau/interop-be-monorepo/pulls --jq '.[] | select(.user.id==49699333) | .number')
+            for number in $PRS
           done
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
