@@ -8,8 +8,7 @@ on:
         type: string
       dryRun:
         description: "Run renovate in DirtyRun mode"
-        required: false
-        default: "null"
+        required: true
         type: string
 concurrency: renovate
 jobs:
@@ -46,14 +45,14 @@ jobs:
           RENOVATE_PR_CONCURRENT_LIMIT: 5
           
           # Dirty run configuration
-          RENOVATE_DRY_RUN: ${{inputs.dryRun ||'null'}}
+          RENOVATE_DRY_RUN: ${{inputs.dryRun}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           #LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
-        if: ${{inputs.dirtyRun == 'full'}}
+        if: ${{inputs.dryRun == 'full'}}
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
