@@ -1,18 +1,18 @@
 import json
 import sys
 import argparse
-from datetime import datetime
 import pandas as pd
+from datetime import datetime
 
-def readJson(file_path):
-    with open(file_path, 'r') as file:
+def readJson(filePath):
+    with open(filePath, 'r') as file:
         data = pd.read_json(file,lines=True)
         return data
         
 def extractInfo(data):
     #Extract information on the branches would be created
     branchesInformationObject = data['branchesInformation'].dropna()
-    outputJSONObject = []
+    outputJsonObject = []
 
     for index, branches in branchesInformationObject.items():
         # Save current repo
@@ -30,8 +30,8 @@ def extractInfo(data):
             currentData['newVersion'] = branchName['upgrades'][0]['newVersion']
 
             print("Branch: ", currentData['branch'], "\n", "PrTitle: ", currentData['prTitle'], "\n", "Dependency Name: ", currentData['depName'], "\n", "Dependency Current Version: ", currentData['currentVersion'], "\n", "Dependency Fixed Version: ", currentData['newVersion'], "\n")
-            outputJSONObject.append(currentData)
-    return outputJSONObject
+            outputJsonObject.append(currentData)
+    return outputJsonObject
 
 def writeToFile(data):
     ts = datetime.now()
