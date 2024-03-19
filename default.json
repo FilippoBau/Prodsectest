@@ -1,5 +1,5 @@
 {
-  "extends": ["config:reccomended"],
+  "extends": ["config:recommended"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
