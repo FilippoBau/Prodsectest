@@ -1,1 +1,38 @@
+name: PR closer
 
+on:
+  workflow_call:
+    inputs:
+      configurationFile:
+        description: "Configuration file"
+        required: true
+        type: string
+
+jobs:
+  checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get token
+        id: get_token
+        uses: actions/create-github-app-token@v1 # v1.7.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          owner: ${{ github.repository_owner }}
+          private-key: ${{ secrets.PRIVATE_KEY }}        
+          
+      - name: close pr
+        id: read_renovate
+        run: |
+          repositories=$(jq -r '.repositories[]' $CONF)
+          echo $repositories
+          for repo in ${repositories[@]}; do
+          
+          done
+        env:
+          GH_TOKEN: ${{ steps.get_token.outputs.token }}
+          CONF: ${{ inputs.configurationFile }}
+
+     
