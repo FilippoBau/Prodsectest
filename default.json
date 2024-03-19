@@ -1,5 +1,5 @@
 {
-  "extends": ["config:best-practices"],
+  "extends": ["config:reccomended"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
@@ -8,6 +8,5 @@
     "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
     "commitMessageExtra": "to {{newVersion}}",
     "commitMessageSuffix": " "
-  },
- "ignoreDeps": ["devDependencies", ":pinDevDependencies"]
+  }
 }
