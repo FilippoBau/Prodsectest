@@ -1,5 +1,5 @@
 {
-  "extends": ["config:recommended"],
+  "extends": ["config:best-practices"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
@@ -15,6 +15,12 @@
         "matchDepTypes": [
           "devDependencies"
         ]
+      },
+      {
+        "matchDepTypes": [
+          "dependencies"
+        ],
+        "rangeStrategy": "auto"
       }
     ]
 }
