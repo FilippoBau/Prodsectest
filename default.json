@@ -1,6 +1,5 @@
 {
   "extends": ["config:best-practices"],
-  "ignorePresets": [":pinDevDependencies"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
