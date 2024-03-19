@@ -5,7 +5,7 @@
     "labels": ["OER"],
     "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
     "commitMessageSuffix": " ",
-    "commitMessagePrefix": "Bump {{depName}} from {{currentValue}} to {{newValue}}"
+    "commitMessagePrefix": "Bump {{depName}} from {{currentVersion}} to {{newVersion}}"
   },
  "ignoreDeps": ["devDependencies"]
 }
