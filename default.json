@@ -15,6 +15,12 @@
         "matchDepTypes": [
           "devDependencies"
         ]
+      },
+      {
+          "matchDepTypes": [
+            "dependencies"
+          ],
+          "rangeStrategy": "in-range-only"
       }
     ]
 }
