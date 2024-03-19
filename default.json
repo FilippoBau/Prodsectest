@@ -2,7 +2,7 @@
   "extends": ["config:best-practices"],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["ProdSec"],
+    "labels": ["OER"],
     "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
     "commitMessageSuffix": " "
   },
