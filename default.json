@@ -1,6 +1,6 @@
 {
   "extends": ["config:best-practices"],
-  "ignorePresets": [":pinDevDependencies",":pinDependencies","docker:pinDigests"],
+  "ignorePresets": [":pinDevDependencies",":pinDependencies"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
