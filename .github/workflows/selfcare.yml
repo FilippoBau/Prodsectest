@@ -1,7 +1,12 @@
 name: Selfcare 
 on:
   workflow_dispatch:
-  
+    inputs:
+      dryRun:
+        description: "Run renovate in DirtyRun mode"
+        required: false
+        default: "null"
+        type: string
 
 jobs:
   call_workflow-1:
@@ -18,6 +23,6 @@ jobs:
     uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
       configurationFile: "Selfcare/renovate.json"
-      Dryrun:${{inputs.dryrun}}
+      dryRun: ${{inputs.dryRun ||'null'}}
     secrets: inherit
     
