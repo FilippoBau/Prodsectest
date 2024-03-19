@@ -1,9 +1,10 @@
 import json
+import sys
+import argparse
 from datetime import datetime
 import pandas as pd
 
-file_path = "results-temp.json"
-def readJson():
+def readJson(file_path):
     with open(file_path, 'r') as file:
         data = pd.read_json(file,lines=True)
         return data
@@ -39,5 +40,9 @@ def writeToFile(data):
         json.dump(data, file)
 
 if __name__ == "__main__":
-    data = readJson()
+    #Take filename from the input
+    parser = argparse.ArgumentParser(description='Report filename')
+    parser.add_argument('source_file', type=open)
+
+    data = readJson(parser.parse_args().source_file.name)
     writeToFile(extractInfo(data))
