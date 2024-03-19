@@ -1,5 +1,6 @@
 {
   "extends": ["config:best-practices"],
+  "ignorePresets": ["helpers:pinGitHubActionDigests"],
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
