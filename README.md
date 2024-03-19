@@ -16,7 +16,7 @@
 - [x] Modificare titolo PR Security secondo specifiche di Corrado
 - [x] Creare il ReadMe per lo script parser
 
-- [ ] Chiudere PR di debendabot, prendendo lo user-id Filippo
+- [x] Chiudere PR di debendabot, prendendo lo user-id Filippo
 - [ ] On-Off del parametro dirty run nel workflow dispatch Filippo
 
 
