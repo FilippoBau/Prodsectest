@@ -17,7 +17,7 @@
 - [x] Creare il ReadMe per lo script parser
 
 - [x] Chiudere PR di debendabot, prendendo lo user-id Filippo
-- [ ] On-Off del parametro dirty run nel workflow dispatch Filippo
+- [x] On-Off del parametro dirty run nel workflow dispatch Filippo
 
 
 - [ ] Raccogliere lista delle repo per: Io, Interop e SelfCare
