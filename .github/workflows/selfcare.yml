@@ -1,6 +1,7 @@
 name: Selfcare 
 on:
   workflow_dispatch:
+  
 
 jobs:
   call_workflow-1:
@@ -13,3 +14,10 @@ jobs:
     with:
       configurationFile: "Selfcare/renovate.json"
     secrets: inherit
+  call_workflow-3:
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+    with:
+      configurationFile: "Selfcare/renovate.json"
+      Dryrun:${{inputs.dryrun}}
+    secrets: inherit
+    
