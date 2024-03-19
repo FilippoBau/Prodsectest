@@ -7,7 +7,7 @@
     "commitMessageAction": "Bump ",
     "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
     "commitMessageExtra": "to {{newVersion}}",
-    "commitMessageSuffix": " ",
+    "commitMessageSuffix": " "
   },
  "ignoreDeps": ["devDependencies"]
 }
