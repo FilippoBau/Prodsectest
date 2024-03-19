@@ -8,6 +8,7 @@ def readJson(file_path):
     with open(file_path, 'r') as file:
         data = pd.read_json(file,lines=True)
         return data
+        
 def extractInfo(data):
     #Extract information on the branches would be created
     branchesInformationObject = data['branchesInformation'].dropna()
