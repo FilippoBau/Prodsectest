@@ -1,5 +1,6 @@
 {
-  "extends": ["config:recommended"],
+  "extends": ["config:best-practices"],
+  "ignorePresets": [":pinDevDependencies", "pinDependencies"]
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
@@ -15,12 +16,6 @@
         "matchDepTypes": [
           "devDependencies"
         ]
-      },
-      {
-          "matchDepTypes": [
-            "dependencies"
-          ],
-          "rangeStrategy": "in-range-only"
       }
     ]
 }
