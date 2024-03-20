@@ -18,10 +18,10 @@
 
 - [x] Chiudere PR di debendabot, prendendo lo user-id Filippo
 - [x] On-Off del parametro dirty run nel workflow dispatch Filippo
+- [x] Rimuovere sezione body in italiano dalla config Filippo
+- [x] Raccogliere lista delle repo per: Io, Interop e SelfCare Filippo
 
-
-- [ ] Raccogliere lista delle repo per: Io, Interop e SelfCare
+      
 - [ ] Creare il ReadMe per la repo
 - [ ] Approfondire come si comporta Renovate con le PR di Dependabot
-- [ ] Rimuovere sezione body in italiano dalla config
 - [ ] increasing performance [opzionale]
