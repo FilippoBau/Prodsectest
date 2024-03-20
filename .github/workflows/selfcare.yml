@@ -13,6 +13,7 @@ jobs:
     uses: FilippoBau/Prodsectest/.github/workflows/repo-list.yml@main
     with:
       configurationFile: "Selfcare/renovate.json"
+    secrets: inherit
 #  call_workflow-1:
 #    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
 #    with:
