@@ -1,0 +1,42 @@
+name: Update Repository List
+
+on:
+  workflow_call:
+  
+jobs:
+  update_repository_list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  
+
+      - name: Update repository list
+        run: |
+          set -e
+          endpoint="https://github.com"
+          org="pagopa"
+          central_repo="eng-github-authorization"
+          max_proc=9
+
+          # Nome del file JSON da aggiornare
+          json_file="repository_list.json"
+
+          if [ ! -d "$central_repo" ] ; then
+              echo "Extracting repo list"
+              git clone "$endpoint/$org/$central_repo"
+          fi
+
+          echo "Cloning repos"
+          # Trova i nomi dei repository e li scrive in un array JSON
+          repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | jq -R -s -c 'split("\n")[:-1]')
+
+          # Aggiorna il file JSON con i repository
+          jq --argjson repos "$repo_list" '.repositories = $repos' $json_file > tmp.json && mv tmp.json $json_file
+          echo "Repository list updated and saved to $json_file"
+
+      - name: Commit and push changes
+        run: |
+          git add $json_file
+          git commit -m "Update repository list"
+          git push
