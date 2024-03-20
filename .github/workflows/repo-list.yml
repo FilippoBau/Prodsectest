@@ -44,7 +44,7 @@ jobs:
           #repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | jq -R -s -c 'split("\n")[:-1]')
           repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | grep '^selfcare' | jq -R -s -c 'split("\n")[:-1]')
 
-
+          echo "Filtering repos"
           # Aggiorna il file JSON con i repository
           jq --argjson repos "$repo_list" '.repositories = $repos' $configurationFile > tmp.json && mv tmp.json $configurationFile
           echo "Repository list updated and saved to $configurationFile"
