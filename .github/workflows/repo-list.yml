@@ -11,6 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2  
 
+      - name: Get token
+        id: get_token
+        uses: actions/create-github-app-token@v1 # v1.7.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          owner: ${{ github.repository_owner }}
+          private-key: ${{ secrets.PRIVATE_KEY }}      
+
       - name: Update repository list
         run: |
           set -e
@@ -40,3 +48,5 @@ jobs:
           git add $json_file
           git commit -m "Update repository list"
           git push
+        env: 
+          GH_TOKEN:  ${{ steps.get_token.outputs.token }}
