@@ -2,6 +2,12 @@ name: Update Repository List
 
 on:
   workflow_call:
+    inputs:
+      configurationFile:
+        description: "Configuration file"
+        required: true
+        type: string
+
   
 jobs:
   update_repository_list:
@@ -27,8 +33,6 @@ jobs:
           central_repo="eng-github-authorization"
           max_proc=9
 
-          # Nome del file JSON da aggiornare
-          json_file="repository_list.json"
 
           if [ ! -d "$central_repo" ] ; then
               echo "Extracting repo list"
@@ -40,13 +44,17 @@ jobs:
           repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | jq -R -s -c 'split("\n")[:-1]')
 
           # Aggiorna il file JSON con i repository
-          jq --argjson repos "$repo_list" '.repositories = $repos' $json_file > tmp.json && mv tmp.json $json_file
-          echo "Repository list updated and saved to $json_file"
+          jq --argjson repos "$repo_list" '.repositories = $repos' $configurationFile > tmp.json && mv tmp.json $configurationFile
+          echo "Repository list updated and saved to $configurationFile"
+        env: 
+          GH_TOKEN:  ${{ steps.get_token.outputs.token }}
+          configurationFile: ${{inputs.configurationFile}}
 
       - name: Commit and push changes
         run: |
-          git add $json_file
+          git add $configurationFile
           git commit -m "Update repository list"
           git push
         env: 
           GH_TOKEN:  ${{ steps.get_token.outputs.token }}
+          configurationFile: ${{inputs.configurationFile}}
