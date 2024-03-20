@@ -3,7 +3,7 @@
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["OER"],
-    "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
+    "prBodyNotes": ["For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
     "commitMessagePrefix": "",
     "commitMessageAction": "Bump ",
     "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
