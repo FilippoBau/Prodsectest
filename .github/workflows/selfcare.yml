@@ -10,7 +10,7 @@ on:
 
 jobs:
   call_workflow-0:
-    uses: FilippoBau/Prodsectest/.github/workflows/pr-list.yml@main
+    uses: FilippoBau/Prodsectest/.github/workflows/repo-list.yml@main
     with:
       configurationFile: "Selfcare/renovate.json"
 #  call_workflow-1:
