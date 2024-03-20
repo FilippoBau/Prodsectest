@@ -41,7 +41,6 @@ jobs:
 
           echo "Cloning repos"
           # Trova i nomi dei repository e li scrive in un array JSON
-          #repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | jq -R -s -c 'split("\n")[:-1]')
           repo_list=$(rg -I 'repo_name' --type json | cut -d '"' -f 4 | grep '^selfcare' | jq -R -s -c 'split("\n")[:-1]')
 
           echo "Filtering repos"
