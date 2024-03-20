@@ -23,5 +23,5 @@
 - [ ] Raccogliere lista delle repo per: Io, Interop e SelfCare
 - [ ] Creare il ReadMe per la repo
 - [ ] Approfondire come si comporta Renovate con le PR di Dependabot
-- [ ] Rimuovere sezione body in italiano dalla config 
+- [ ] Rimuovere sezione body in italiano dalla config
 - [ ] increasing performance [opzionale]
