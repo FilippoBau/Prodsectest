@@ -23,4 +23,9 @@
 
       
 - [ ] Creare il ReadMe per la repo
+- [ ] Approfondire come si comporta Renovate con le PR di Dependabot
+- [ ] naming convention (all lowercase) + clean up & lint code
 - [ ] increasing performance [opzionale]
+- [ ] Pagina Confluence spiegazione Renovate (strategia)
+- [ ] Creazione repository privato (nome?)  && README (how to and override) sul repository tecnico su come contribuire (orientato ai SecEng) - tutto in inglese
+      - [ ] codeowners and branch protections + eng-github-auth
