@@ -23,5 +23,4 @@
 
       
 - [ ] Creare il ReadMe per la repo
-- [ ] Approfondire come si comporta Renovate con le PR di Dependabot
 - [ ] increasing performance [opzionale]
