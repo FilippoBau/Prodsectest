@@ -28,4 +28,4 @@
 - [ ] increasing performance [opzionale]
 - [ ] Pagina Confluence spiegazione Renovate (strategia)
 - [ ] Creazione repository privato (nome?)  && README (how to and override) sul repository tecnico su come contribuire (orientato ai SecEng) - tutto in inglese
-      - [ ] codeowners and branch protections + eng-github-auth
+      - codeowners and branch protections + eng-github-auth
