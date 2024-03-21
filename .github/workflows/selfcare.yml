@@ -9,11 +9,11 @@ on:
         type: string
 
 jobs:
-  call_workflow-0:
-    uses: FilippoBau/Prodsectest/.github/workflows/repo-list.yml@main
-    with:
-      configurationFile: "Selfcare/renovate.json"
-    secrets: inherit
+#  call_workflow-0:
+#    uses: FilippoBau/Prodsectest/.github/workflows/repo-list.yml@main
+#    with:
+#      configurationFile: "Selfcare/renovate.json"
+#    secrets: inherit
 #  call_workflow-1:
 #    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
 #    with:
@@ -24,10 +24,10 @@ jobs:
 #    with:
 #      configurationFile: "Selfcare/renovate.json"
 #    secrets: inherit
-#  call_workflow-3:
-#    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
-#    with:
-#      configurationFile: "Selfcare/renovate.json"
-#      dryRun: ${{inputs.dryRun ||'null'}}
-#    secrets: inherit
+  call_workflow-3:
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+    with:
+      configurationFile: "Selfcare/renovate.json"
+      dryRun: ${{inputs.dryRun ||'null'}}
+    secrets: inherit
     
