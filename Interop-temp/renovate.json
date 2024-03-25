@@ -2,11 +2,3 @@
   "extends": ["github>FilippoBau/Prodsectest"],
   "repositories": ["FilippoBau/interop-be-monorepo"]
 }
-#  "packageRules": [
-#    {
-#      "enabled": false,
-#     "groupName": "everything",
-#      "matchPackagePatterns": ["*"],
-#      "separateMajorMinor": false
-#    }
-#  ]
