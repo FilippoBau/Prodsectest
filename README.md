@@ -23,6 +23,7 @@
 
       
 - [ ] Creare il ReadMe per la repo
+- [ ] default che non toglie caret
 - [ ] Approfondire come si comporta Renovate con le PR di Dependabot
 - [ ] naming convention (all lowercase) + clean up & lint code
 - [ ] increasing performance [opzionale]
