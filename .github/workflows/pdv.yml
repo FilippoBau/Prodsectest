@@ -1,0 +1,27 @@
+name: Pdv
+on:
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: "Run renovate in DirtyRun mode"
+        required: false
+        default: "null"
+        type: string
+
+jobs:
+  call_workflow-1:
+    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
+    with:
+      configurationFile: "Pdv/renovate.json"
+    secrets: inherit 
+  call_workflow-2:
+    uses: FilippoBau/Prodsectest/.github/workflows/pr-closer.yml@main
+    with:
+      configurationFile: "Pdv/renovate.json"
+    secrets: inherit
+  call_workflow-3:
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+    with:
+      configurationFile: "Pdv/renovate.json"
+      dryRun: ${{inputs.dryRun ||'null'}}
+    secrets: inherit
