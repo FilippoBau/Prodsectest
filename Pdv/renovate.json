@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/pdv-user-registry-infra","FilippoBau/pdv-tokenizer-infra","FilippoBau/pdv-ms-tokenizer","FilippoBau/pdv-ms-person","FilippoBau/pdv-ms-user-registry","FilippoBau/pdv-load-tests"]
+  "repositories": ["FilippoBau/pdv-ms-tokenizer","FilippoBau/pdv-ms-person","FilippoBau/pdv-ms-user-registry"]
 }
