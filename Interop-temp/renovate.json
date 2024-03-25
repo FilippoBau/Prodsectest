@@ -1,4 +1,0 @@
-{
-  "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/io-backend"]
-}
