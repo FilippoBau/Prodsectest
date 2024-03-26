@@ -22,6 +22,6 @@ jobs:
   call_workflow-3:
     uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
-      configurationFile: "./pdv-renovate.json"
+      configurationFile: "${{github.event.inputs.dryRun=='full' ? 'dryRun-renovate.json' : './pdv-renovate.json'}}"
       dryRun: ${{inputs.dryRun ||'null'}}
     secrets: inherit
