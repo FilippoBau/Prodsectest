@@ -1,14 +1,5 @@
 {
-    "extends": ["config:recommended"],
-    "vulnerabilityAlerts": {
-        "enabled": true,
-        "labels": ["OER"],
-        "prBodyNotes": ["Per ulteriori informazioni sulla sicurezza, consulta la pagina Confluence [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"],
-        "commitMessageAction": "Bump ",
-        "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-        "commitMessageExtra": "to {{newVersion}}",
-        "commitMessageSuffix": " "
-    },
+    "repositories": ["FilippoBau/io-backend"],
     "packageRules": [
     {
         "enabled": false,
