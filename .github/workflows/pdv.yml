@@ -20,14 +20,14 @@ jobs:
       configurationFile: "./pdv-renovate.json"
     secrets: inherit
   call_workflow-3:
-    uses: pagopa/eng-renovate/.github/workflows/renovate.yml@main
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     if: ${{ github.event.inputs.dryRun == 'full' }}
     with:
       configurationFile: "./dryRun-renovate.json"
       dryRun: ${{ inputs.dryRun || 'null' }}
     secrets: inherit
   call_workflow-4:
-    uses: pagopa/eng-renovate/.github/workflows/renovate.yml@main
+    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     if: ${{ github.event.inputs.dryRun != 'full' }}
     with:
       configurationFile: "./pdv-renovate.json"
