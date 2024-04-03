@@ -23,6 +23,12 @@
       "matchDepTypes": [
         "devDependencies"
       ]
+    },
+    {
+        "enabled": false,
+        "groupName": "No-Sec-Updates",
+        "matchPackagePatterns": ["*"],
+        "matchUpdateTypes": ["major","minor","patch","digest","lockFileMaintenance","rollback","bump","replacement"]
     }
   ]
 }
