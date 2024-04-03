@@ -47,7 +47,7 @@ jobs:
           # Dirty run configuration
           RENOVATE_DRY_RUN: ${{inputs.dryRun}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
-          #LOG_LEVEL: "DEBUG"
+          LOG_LEVEL: "DEBUG"
         with:
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
