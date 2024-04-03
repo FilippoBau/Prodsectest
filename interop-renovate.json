@@ -16,7 +16,9 @@
     "commitMessageSuffix": " ",
     "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
   },
-  "minor": {
-    "enabled": false
+  "force":{
+     "minor": {
+        "enabled": false
+      }
   }
 }
