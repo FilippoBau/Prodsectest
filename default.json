@@ -17,10 +17,12 @@
     "commitMessageSuffix": " ",
     "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
   },
-  "minor": {
-    "enabled": false
-  },
   "packageRules": [
+    {
+        "enabled": false,
+        "matchPackagePatterns": ["*"],
+        "matchUpdateTypes": ["major","minor","patch","digest","lockFileMaintenance","rollback","bump","replacement"]
+    },
     {
       "enabled": false,
       "matchDepTypes": [
