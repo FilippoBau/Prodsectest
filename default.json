@@ -17,6 +17,9 @@
     "commitMessageSuffix": " ",
     "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
   },
+  "minor": {
+    "enabled": true
+  }
   "packageRules": [
     {
       "enabled": false,
