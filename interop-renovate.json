@@ -1,24 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"],
-  "force":{ 
-    "vulnerabilityAlerts": {
-      "enabled": false,
-      "labels": [
-        "OER"
-      ],
-      "prBodyNotes": [
-        "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
-      ],
-      "commitMessagePrefix": " ",
-      "commitMessageAction": "Bump ",
-      "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-      "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "commitMessageSuffix": " ",
-      "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
-    },
-    "minor": {
-        "enabled": false
-      }
-  }
+  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"]
 }
