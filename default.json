@@ -19,7 +19,7 @@
   },
   "minor": {
     "enabled": true
-  }
+  },
   "packageRules": [
     {
       "enabled": false,
