@@ -1,11 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"],
-  "packageRules": [
-    {
-        "enabled": false,
-        "matchPackagePatterns": ["*"],
-        "matchUpdateTypes": ["major","minor","patch","digest","lockFileMaintenance","rollback","bump","replacement"]
-    }
-  ]
+  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"]
 }
