@@ -3,7 +3,7 @@
   "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"],
   "packageRules": [
     {
-        "enabled": true,
+        "enabled": false,
         "matchPackagePatterns": ["*"],
         "matchUpdateTypes": ["major","minor","patch","digest","lockFileMaintenance","rollback","bump","replacement"]
     }
