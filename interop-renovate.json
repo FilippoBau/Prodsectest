@@ -15,12 +15,5 @@
     "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
     "commitMessageSuffix": " ",
     "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
-  },
-  "packageRules": [
-    {
-        "enabled": false,
-        "matchPackagePatterns": ["*"],
-        "matchUpdateTypes": ["major","minor","patch","digest","lockFileMaintenance","rollback","bump","replacement"]
-    }
-  ]
+  }
 }
