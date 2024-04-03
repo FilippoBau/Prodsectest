@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-msuser-registry","FilippoBau/io-backend"]
+  "repositories": ["FilippoBau/github-self-hosted-runner-azure","FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"]
 }
