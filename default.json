@@ -18,7 +18,7 @@
     "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
   },
   "major": {
-        "enabled": false
+        "enabled": true
       },
   "minor": {
         "enabled": false
