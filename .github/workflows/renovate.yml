@@ -49,6 +49,7 @@ jobs:
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           LOG_LEVEL: "DEBUG"
         with:
+          renovate-version: sha256:3bc30269c9b5731a52e85931363c58974a5fd24bd92272201301ddf6f54468ad
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
