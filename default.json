@@ -1,52 +1,54 @@
 {
-  "extends": [
-    "config:best-practices", ":semanticCommitsDisabled"
-  ],
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "OER"
+    "extends": [
+        "config:best-practices",
+        ":semanticCommitsDisabled",
+        ":disableDependencyDashboard"
     ],
-    "prBodyNotes": [
-      "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
-    ],
-    "commitMessagePrefix": " ",
-    "commitMessageAction": "Bump ",
-    "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-    "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-    "commitMessageSuffix": " ",
-    "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
-  },
-  "major": {
-        "enabled": true
-      },
-  "minor": {
-        "enabled": false
-      },
-  "patch": {
-        "enabled": false
-      },
-  "digest": {
-        "enabled": false
-      },
-  "lockFileMaintenance": {
-        "enabled": false
-      },
-  "rollback": {
-        "enabled": false
-      },
-  "bump": {
-        "enabled": false
-      },
-  "replacement": {
+    "vulnerabilityAlerts": {
+        "enabled": true,
+        "labels": [
+            "OER"
+        ],
+        "prBodyNotes": [
+            "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
+        ],
+        "commitMessagePrefix": " ",
+        "commitMessageAction": "Bump ",
+        "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
+        "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+        "commitMessageSuffix": " ",
+        "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    },
+    "major": {
         "enabled": false
     },
-  "packageRules": [
-    {
-      "enabled": false,
-      "matchDepTypes": [
-        "devDependencies"
-      ]
-    }
-  ]
+    "minor": {
+        "enabled": false
+    },
+    "patch": {
+        "enabled": false
+    },
+    "digest": {
+        "enabled": false
+    },
+    "lockFileMaintenance": {
+        "enabled": false
+    },
+    "rollback": {
+        "enabled": false
+    },
+    "bump": {
+        "enabled": false
+    },
+    "replacement": {
+        "enabled": false
+    },
+    "packageRules": [
+        {
+            "enabled": false,
+            "matchDepTypes": [
+                "devDependencies"
+            ]
+        }
+    ]
 }
