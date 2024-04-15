@@ -49,6 +49,18 @@
             "matchDepTypes": [
                 "devDependencies"
             ]
-        }
+        },
+        {
+          "matchDepTypes": ["devDependencies"],
+          "prPriority": -1
+        },
+        {
+          "matchUpdateTypes": ["pinDigest"],
+          "prPriority": 1
+        },
+        {
+          "matchUpdateTypes": ["pin"],
+          "prPriority": 1
+        },
     ]
 }
