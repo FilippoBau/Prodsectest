@@ -47,7 +47,7 @@ jobs:
           # Dirty run configuration
           RENOVATE_DRY_RUN: ${{inputs.dryRun}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
-          LOG_LEVEL: "DEBUG"
+          #LOG_LEVEL: "DEBUG"
         with:
           renovate-version: 37.279-full@sha256:b5d177a702420087c9b6ab7ee32dab4a2d2ad63a6fe955a472e691ba64226129
           configurationFile: ${{ inputs.configurationFile }}
