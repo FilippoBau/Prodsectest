@@ -5,7 +5,7 @@ on:
       dryRun:
         description: "Run renovate in DirtyRun mode"
         required: false
-        default: "null"
+        default: "full"
         type: string
 
 jobs:
