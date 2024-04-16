@@ -10,7 +10,6 @@ on:
         description: "Run renovate in DirtyRun mode"
         required: true
         type: string
-concurrency: renovate
 jobs:
   renovate:
     runs-on: ubuntu-latest
