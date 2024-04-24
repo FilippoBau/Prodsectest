@@ -1,5 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-ms-core","FilippoBau/interop-be-monorepo","FilippoBau/interop-selfcare-proxy-clients"]
+  "repositories": ["FilippoBau/io-backend"]
 }
     
