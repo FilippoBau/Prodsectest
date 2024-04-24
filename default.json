@@ -21,10 +21,10 @@
         "recreateWhen": "always"
     },
     "major": {
-        "enabled": false
+        "enabled": true
     },
     "minor": {
-        "enabled": false
+        "enabled": true
     },
     "patch": {
         "enabled": false
