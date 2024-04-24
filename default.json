@@ -17,7 +17,8 @@
         "commitMessageTopic": "{{depName}}",
         "commitMessageExtra": " ",
         "commitMessageSuffix": " ",
-        "branchTopic": "{{depName}}"
+        "branchTopic": "{{depName}}",
+        "groupBy": "type"
     },
     "major": {
         "enabled": false
