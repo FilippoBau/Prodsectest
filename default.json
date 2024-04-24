@@ -18,7 +18,7 @@
         "commitMessageExtra": " ",
         "commitMessageSuffix": " ",
         "branchTopic": "{{depName}}",
-        "groupBy": "type"
+        "recreateWhen": "always"
     },
     "major": {
         "enabled": false
