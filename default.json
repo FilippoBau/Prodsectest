@@ -12,12 +12,12 @@
         "prBodyNotes": [
             "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
         ],
-        "commitMessagePrefix": "",
-        "commitMessageAction": "Bump security",
-        "commitMessageTopic": "",
-        "commitMessageExtra": "",
-        "commitMessageSuffix": "",
-        "branchTopic": "Bump security"
+        "commitMessagePrefix": " ",
+        "commitMessageAction": "Bump ",
+        "commitMessageTopic": "{{depName}}",
+        "commitMessageExtra": " ",
+        "commitMessageSuffix": " ",
+        "branchTopic": "{{depName}}"
     },
     "major": {
         "enabled": false
