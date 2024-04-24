@@ -17,7 +17,7 @@
         "commitMessageTopic": "",
         "commitMessageExtra": "",
         "commitMessageSuffix": "",
-        "branchTopic": ""
+        "branchTopic": "Bump security"
     },
     "major": {
         "enabled": false
