@@ -14,10 +14,10 @@
         ],
         "commitMessagePrefix": " ",
         "commitMessageAction": "Bump ",
-        "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-        "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+        "commitMessageTopic": "{{depName}}",
+        "commitMessageExtra": " ",
         "commitMessageSuffix": " ",
-        "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+        "branchTopic": "{{depName}}"
     },
     "major": {
         "enabled": false
