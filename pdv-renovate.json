@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend"]
+  "repositories": ["FilippoBau/pdv-ms-user-registry","FilippoBau/io-backend","FilippoBau/io-app","FilippoBau/io-frontend"]
 }
