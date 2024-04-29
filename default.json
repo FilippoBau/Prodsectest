@@ -44,13 +44,6 @@
   "replacement": {
     "enabled": false
   },
-  {
-  "hostRules": [
-    {
-      "abortOnError": false
-    }
-  ]
-  },
   "packageRules": [
     {
       "enabled": false,
