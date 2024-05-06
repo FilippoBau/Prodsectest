@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/interop-be-monorepo"]
+  "repositories": ["FilippoBau/interop-be-probing-api"]
 }
