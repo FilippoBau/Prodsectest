@@ -1,6 +1,6 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
   "repositories": ["FilippoBau/selfcare-onboarding"],
-  "ignorePaths":[".python-version"]
+  "ignorePaths":["**/.python-version/**"]
 }
     
