@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/pagopa-stand-in-technical-support"]
+  "repositories": ["FilippoBau/pagopa-stand-in-technical-support","FilippoBau/eng-ca"]
 }
