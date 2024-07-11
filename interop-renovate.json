@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/eng-ca"]
+  "repositories": ["FilippoBau/eng-ca","FilippoBau/renovate-test"]
 }
