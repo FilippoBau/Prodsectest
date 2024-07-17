@@ -4,6 +4,7 @@
     ":semanticCommitsDisabled",
     ":disableDependencyDashboard"
   ],
+  "pinDigests": true,
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": [
