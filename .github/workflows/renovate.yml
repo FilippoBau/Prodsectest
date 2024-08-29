@@ -69,7 +69,7 @@ jobs:
           #LOG_LEVEL: "DEBUG"
         with:
           # renovate-version: 37.279-full@sha256:b5d177a702420087c9b6ab7ee32dab4a2d2ad63a6fe955a472e691ba64226129
-          renovate-version: ${{ env.VERSION }}-full@sha256:${{ env.HASH }}
+          renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
