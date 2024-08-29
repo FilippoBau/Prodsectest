@@ -73,7 +73,7 @@ jobs:
           RENOVATE_REQUIRE_CONFIG: "optional"
           RENOVATE_PR_HOURLY_LIMIT: 0
           RENOVATE_PR_CONCURRENT_LIMIT: 15
-          RENOVATE_REPOSITORY_CACHE: 'true'
+          RENOVATE_REPOSITORY_CACHE: 'enabled'
           
           # Dirty run configuration
           RENOVATE_DRY_RUN: ${{inputs.dryRun}}
