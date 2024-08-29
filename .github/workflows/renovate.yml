@@ -16,11 +16,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+        
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
         run: jq type $CONF
         env:
           CONF: ${{ inputs.configurationFile }}
+          
+      - name: Read Renovate Version and Hash
+        id: read_version_hash
+        run: |
+          VERSION=$(jq -r '.renovateVersion' renovate.json)
+          HASH=$(jq -r '.renovateHash' renovate.json)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "HASH=$HASH" >> $GITHUB_ENV    
+
+      - name: Cache Renovate
+        id: cache-renovate
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/renovate
+          key: renovate-cache-${{ runner.os }}-${{ inputs.configurationFile }}-${{ env.VERSION }}-${{ env.HASH }}
+          restore-keys: |
+            renovate-cache-${{ runner.os }}-
+
       - name: Get token
         id: get_token
         uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
@@ -28,6 +47,7 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           installation_id: ${{ secrets.INSTALLATION_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+          
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
         env:
@@ -49,7 +69,7 @@ jobs:
           #LOG_LEVEL: "DEBUG"
         with:
           # renovate-version: 37.279-full@sha256:b5d177a702420087c9b6ab7ee32dab4a2d2ad63a6fe955a472e691ba64226129
-          renovate-version: 37.409.1-full@sha256:9aaaeabab0f330e9014b8fe47d23379b49282f4da7096005dbc86635be452616
+          renovate-version: ${{ env.VERSION }}-full@sha256:${{ env.HASH }}
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
