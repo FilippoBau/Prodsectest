@@ -143,7 +143,7 @@ jobs:
           # To solve *that*, we'd have to extract to root (/), which isn't safe.
           tar -czvf $cache_archive -C $cache_dir .
       - name: Upload Artifact2
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.cache_key }}
           path: ${{ env.cache_archive }}
