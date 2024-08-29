@@ -45,8 +45,8 @@ jobs:
             
       - if: steps.cache-renovate.outputs.cache-hit != 'true'
         run: |
-              docker pull renovate/renovate:sha256-${{ env.HASH }}
-              docker save -o cache/renovate.tar renovate/renovate:sha256-${{ env.HASH }}
+              docker pull renovate/renovate:sha256-${{ env.HASH }}.sig
+              docker save -o cache/renovate.tar renovate/renovate:sha256-${{ env.HASH }}.sig
 
       - if: steps.cache-renovate.outputs.cache-hit == 'true'
         run: docker load -i cache/renovate.tar
