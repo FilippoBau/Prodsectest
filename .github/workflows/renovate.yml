@@ -35,7 +35,7 @@ jobs:
         id: cache-renovate
         uses: actions/cache@v3
         with:
-          path: ~/.cache/renovate
+          path: .cache/renovate
           key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
           restore-keys: |
             renovate-cache-${{ runner.os }}-
