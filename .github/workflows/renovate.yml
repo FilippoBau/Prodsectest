@@ -30,6 +30,9 @@ jobs:
           HASH=$(jq -r '.renovateHash' renovate.json)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "HASH=$HASH" >> $GITHUB_ENV    
+          
+      - name: Ensure Cache Directory Exists
+        run: mkdir -p ~/.cache/renovate
 
       - name: Cache Renovate
         id: cache-renovate
