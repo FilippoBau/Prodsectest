@@ -42,6 +42,14 @@ jobs:
           key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
           restore-keys: |
             renovate-cache-${{ runner.os }}-
+            
+      - if: steps.cache-renovate.outputs.cache-hit != 'true'
+        run: |
+              docker pull renovate/renovate:sha256-${{ env.HASH }}
+              docker save -o cache/renovate.tar renovate/renovate:sha256-${{ env.HASH }}
+
+      - if: steps.cache-renovate.outputs.cache-hit == 'true'
+        run: docker load -i cache/renovate.tar
 
       - name: Get token
         id: get_token
