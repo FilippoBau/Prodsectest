@@ -74,7 +74,7 @@ jobs:
           RENOVATE_PR_HOURLY_LIMIT: 0
           RENOVATE_PR_CONCURRENT_LIMIT: 15
           RENOVATE_REPOSITORY_CACHE: 'enabled'
-          
+          RENOVATE_CACHE_DIR: "cache/renovate"
           # Dirty run configuration
           RENOVATE_DRY_RUN: ${{inputs.dryRun}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
