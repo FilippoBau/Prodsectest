@@ -42,7 +42,15 @@ jobs:
           key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
           restore-keys: |
             renovate-cache-${{ runner.os }}-
-            
+
+      - if: steps.cache-renovate.outputs.cache-hit != 'true'
+        run: |
+              docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
+              docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
+
+      - if: steps.cache-renovate.outputs.cache-hit == 'true'
+        run: docker load -i cache/renovate/renovate.tar
+
 
       - name: Get token
         id: get_token
