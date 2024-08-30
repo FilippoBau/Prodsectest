@@ -104,7 +104,7 @@ jobs:
           private_key: ${{ secrets.PRIVATE_KEY }}
           
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
+        uses: renovatebot/github-action@630a255a1f2f56c8d8ce160bed3e3ca577ca53e2
         env:
           # Username for GitHub authentication (should match GitHub App name + [bot])
           RENOVATE_USERNAME: "renovate-auth[bot]"
