@@ -59,7 +59,36 @@ jobs:
       - if: steps.cache-renovate.outputs.cache-hit == 'true'
         run: docker load -i cache/renovate/renovate.tar
 
-       
+      # This third party action allows you to download the cache artifact from different workflow runs
+      # Note that actions/cache doesn't work well because the cache key would need to be computed from
+      # a file within the cache, meaning there would never be any data to restore. With other keys, the
+      # cache wouldn't necessarily upload when it changes. actions/download-artifact also doesn't work
+      # because it only handles artifacts uploaded in the same run, and we want to restore from the
+      # previous successful run.
+      - uses: dawidd6/action-download-artifact@v2
+        continue-on-error: true
+        with:
+          name: ${{ env.cache_key }}
+          path: cache-download
+      # Using tar to compress and extract the archive isn't strictly necessary, but it can improve
+      # performance significantly when uploading artifacts with lots of files.
+      - name: Extract renovate cache
+        run: |
+          set -x
+          # Skip if no cache is set, such as the first time it runs.
+          if [ ! -d cache-download ] ; then
+            echo "No cache found."
+            exit 0
+          fi
+          # Make sure the directory exists, and extract it there. Note that it's nested in the download directory.
+          mkdir -p $cache_dir
+          tar -xzf cache-download/$cache_archive -C $cache_dir
+          # Unfortunately, the permissions expected within renovate's docker container
+          # are different than the ones given after the cache is restored. We have to
+          # change ownership to solve this. We also need to have correct permissions in
+          # the entire /tmp/renovate tree, not just the section with the repo cache.
+          sudo chown -R runneradmin:root /tmp/renovate/
+          ls -R $cache_dir
 
       - name: Get token
         id: get_token
@@ -100,4 +129,14 @@ jobs:
           name: my-artifact
           path: /tmp/renovate/results.json
           retention-days: 5
-          
+      - name: Compress renovate cache
+        run: |
+          ls $cache_dir
+          tar -czvf $cache_archive -C $cache_dir .
+      - name: Upload Artifact2
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.cache_key }}
+          path: ${{ env.cache_archive }}
+          retention-days: 1
+            
