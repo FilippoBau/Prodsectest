@@ -1,5 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-infra"]
+  "repositories": ["FilippoBau/selfcare-infra","FilippoBau/developer-portal"]
 }
     
