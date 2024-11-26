@@ -21,7 +21,6 @@
     "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
     "recreateWhen":"always"
   },
-  {
   "terraform": {
     "enabled": true
   },
