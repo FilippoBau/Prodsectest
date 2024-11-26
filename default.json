@@ -25,28 +25,28 @@
     "enabled": true
   },
   "major": {
-    "enabled": false
+    "enabled": true
   },
   "minor": {
-    "enabled": false
+    "enabled": true
   },
   "patch": {
-    "enabled": false
+    "enabled": true
   },
   "digest": {
-    "enabled": false
+    "enabled": true
   },
   "lockFileMaintenance": {
-    "enabled": false
+    "enabled": true
   },
   "rollback": {
-    "enabled": false
+    "enabled": true
   },
   "bump": {
-    "enabled": false
+    "enabled": true
   },
   "replacement": {
-    "enabled": false
+    "enabled": true
   },
   "packageRules": [
     {
