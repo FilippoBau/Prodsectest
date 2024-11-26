@@ -50,9 +50,9 @@ jobs:
         id: get_token
         uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
         with:
-          app-id: ${{ secrets.GH_APP_ID }}
-          owner: ${{ github.repository_owner }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}        
+          app_id: ${{ secrets.APP_ID }}
+          installation_id: ${{ secrets.INSTALLATION_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}      
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
         env:
