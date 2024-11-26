@@ -7,136 +7,80 @@ on:
         required: true
         type: string
       dryRun:
-        description: "Run renovate in DirtyRun mode"
+        description: "Run renovate in DryRun mode"
         required: true
         type: string
-env:
-  cache_archive: renovate_cache.tar.gz
-  # This is the dir renovate provides -- if we set our own directory via cacheDir, we can run into permissions issues.
-  # It is also possible to cache a higher level of the directory, but it has minimal benefit. While renovate execution
-  # time gets faster, it also takes longer to upload the cache as it grows bigger.
-  cache_dir: /tmp/renovate/cache/renovate/repository
-  # This can be manually changed to bust the cache if neccessary.
-  cache_key: renovate-cache
+
 jobs:
   renovate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    environment: renovate
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
-        
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
         run: jq type $CONF
         env:
           CONF: ${{ inputs.configurationFile }}
-          
       - name: Read Renovate Version and Hash
         id: read_version_hash
         run: |
-          VERSION=$(jq -r '.renovateVersion' renovate.json)
-          HASH=$(jq -r '.renovateHash' renovate.json)
+          VERSION=$(jq -r '.renovateVersion' renovate-version.json)
+          HASH=$(jq -r '.renovateHash' renovate-version.json)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "HASH=$HASH" >> $GITHUB_ENV    
-          
       - name: Ensure Cache Directory Exists
         run: mkdir -p cache/renovate
-
       - name: Cache Renovate
         id: cache-renovate
-        uses: actions/cache@v4
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
         with:
           path: cache/renovate
           key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
           restore-keys: |
-            renovate-cache-${{ runner.os }}-
-
+            renovate-cache-${{ runner.os }}- 
       - if: steps.cache-renovate.outputs.cache-hit != 'true'
         run: |
               docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
               docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
-
       - if: steps.cache-renovate.outputs.cache-hit == 'true'
         run: docker load -i cache/renovate/renovate.tar
-
-      # This third party action allows you to download the cache artifact from different workflow runs
-      # Note that actions/cache doesn't work well because the cache key would need to be computed from
-      # a file within the cache, meaning there would never be any data to restore. With other keys, the
-      # cache wouldn't necessarily upload when it changes. actions/download-artifact also doesn't work
-      # because it only handles artifacts uploaded in the same run, and we want to restore from the
-      # previous successful run.
-      - uses: dawidd6/action-download-artifact@v2
-        continue-on-error: true
-        with:
-          name: ${{ env.cache_key }}
-          path: cache-download
-      # Using tar to compress and extract the archive isn't strictly necessary, but it can improve
-      # performance significantly when uploading artifacts with lots of files.
-      - name: Extract renovate cache
-        run: |
-          set -x
-          # Skip if no cache is set, such as the first time it runs.
-          if [ ! -d cache-download ] ; then
-            echo "No cache found."
-            exit 0
-          fi
-          # Make sure the directory exists, and extract it there. Note that it's nested in the download directory.
-          mkdir -p $cache_dir
-          tar -xzf cache-download/$cache_archive -C $cache_dir
-          # Unfortunately, the permissions expected within renovate's docker container
-          # are different than the ones given after the cache is restored. We have to
-          # change ownership to solve this. We also need to have correct permissions in
-          # the entire /tmp/renovate tree, not just the section with the repo cache.
-          sudo chown -R runneradmin:root /tmp/renovate/
-          ls -R $cache_dir
-
       - name: Get token
         id: get_token
-        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
         with:
-          app_id: ${{ secrets.APP_ID }}
-          installation_id: ${{ secrets.INSTALLATION_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-          
+          app-id: ${{ secrets.GH_APP_ID }}
+          owner: ${{ github.repository_owner }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}        
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@630a255a1f2f56c8d8ce160bed3e3ca577ca53e2
+        uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
         env:
           # Username for GitHub authentication (should match GitHub App name + [bot])
-          RENOVATE_USERNAME: "renovate-auth[bot]"
+          RENOVATE_USERNAME: "renovate-pagopa[bot]"
           # Git commit author used, must match GitHub App
-          RENOVATE_GIT_AUTHOR: "renovate-auth <162982637+renovate-auth[bot]@users.noreply.github.com>"
+          RENOVATE_GIT_AUTHOR: "renovate-pagopa <164534245+renovate-pagopa[bot]@users.noreply.github.com>"
           # Use GitHub API to create commits (this allows for signed commits from GitHub App)
           RENOVATE_PLATFORM_COMMIT: "true"
           # Onboarding not needed for self hosted
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "optional"
           RENOVATE_PR_HOURLY_LIMIT: 0
-          RENOVATE_PR_CONCURRENT_LIMIT: 15
-          RENOVATE_REPOSITORY_CACHE: 'enabled'
+          RENOVATE_PR_CONCURRENT_LIMIT: 5
+          
           # Dirty run configuration
           RENOVATE_DRY_RUN: ${{inputs.dryRun}}
           RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
           #LOG_LEVEL: "DEBUG"
         with:
-          # renovate-version: 37.279-full@sha256:b5d177a702420087c9b6ab7ee32dab4a2d2ad63a6fe955a472e691ba64226129
           renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
           configurationFile: ${{ inputs.configurationFile }}
           token: '${{ steps.get_token.outputs.token }}'
       - name: Upload Artifact
         if: ${{inputs.dryRun == 'full'}}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
         with:
           name: my-artifact
           path: /tmp/renovate/results.json
           retention-days: 5
-      - name: Compress renovate cache
-        run: |
-          ls $cache_dir
-          tar -czvf $cache_archive -C $cache_dir .
-      - name: Upload Artifact2
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.cache_key }}
-          path: ${{ env.cache_archive }}
-          retention-days: 1
-            
+
