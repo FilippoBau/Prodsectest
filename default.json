@@ -11,7 +11,7 @@
       "OER"
     ],
     "prBodyNotes": [
-      "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
+      "For further information on security, please refer to the Confluence page"
     ],
     "commitMessagePrefix": " ",
     "commitMessageAction": "Bump ",
@@ -20,6 +20,13 @@
     "commitMessageSuffix": " ",
     "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
     "recreateWhen":"always"
+  },
+  {
+  "commitMessageTopic": "Terraform {{depName}}",
+  "fileMatch": [
+    "\\.tf$"
+  ],
+  "pinDigests": false
   },
   "major": {
     "enabled": false
