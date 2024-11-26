@@ -22,11 +22,8 @@
     "recreateWhen":"always"
   },
   {
-  "commitMessageTopic": "Terraform {{depName}}",
-  "fileMatch": [
-    "\\.tf$"
-  ],
-  "pinDigests": false
+  "terraform": {
+    "enabled": true
   },
   "major": {
     "enabled": false
