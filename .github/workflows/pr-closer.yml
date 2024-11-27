@@ -17,11 +17,11 @@ jobs:
 
       - name: Get token
         id: get_token
-        uses: actions/create-github-app-token@v1 # v1.7.0
+        uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
         with:
-          app-id: ${{ secrets.APP_ID }}
+          app-id: ${{ secrets.GH_APP_ID }}
           owner: ${{ github.repository_owner }}
-          private-key: ${{ secrets.PRIVATE_KEY }}        
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}        
           
       - name: close pr
         id: read_renovate
