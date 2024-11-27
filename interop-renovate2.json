@@ -1,4 +1,0 @@
-{
-  "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/eng-ca","FilippoBau/renovate-test","FilippoBau/interop-be-monorepo","FilippoBau/selfcare-onboarding-backend","FilippoBau/b2b-portals" ,"FilippoBau/idpay-payment" ,"FilippoBau/io-cgn" ,"FilippoBau/oneidentity" ,"FilippoBau/io-ipatente" ,"FilippoBau/pagopa-infra" ,"FilippoBau/io-app" ,"FilippoBau/pdnd-interop-frontend"]
-}
