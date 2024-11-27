@@ -23,6 +23,30 @@
   },
   "terraform": {
     "enabled": true
+     "major": {
+    "enabled": true
+    },
+  "minor": {
+    "enabled": true
+  },
+  "patch": {
+    "enabled": true
+  },
+  "digest": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "rollback": {
+    "enabled": true
+  },
+  "bump": {
+    "enabled": true
+  },
+  "replacement": {
+    "enabled": true
+  }
   },
   "major": {
     "enabled": false
