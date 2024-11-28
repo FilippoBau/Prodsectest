@@ -31,6 +31,7 @@ jobs:
             jsonRepo1.json
             jsonRepo2.json
   dependabot-check:
+    needs: run-script
     strategy:
       matrix:
         configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"]
@@ -38,7 +39,8 @@ jobs:
     with:
       configurationFile: ${{ matrix.configurationFile }}
     secrets: inherit 
-  call_workflow-2:
+  pr-closer:
+    needs: run-script
     strategy:
       matrix:
         configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
@@ -47,6 +49,7 @@ jobs:
       configurationFile: ${{ matrix.configurationFile }}
     secrets: inherit
   run-renovate:
+    needs: [dependabot-check,pr-closer]
     strategy:
       matrix:
         configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
