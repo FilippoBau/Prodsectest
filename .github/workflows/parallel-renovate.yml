@@ -9,10 +9,31 @@ on:
         type: string
 
 jobs:
-  call_workflow-1:
+  run-script:
+    runs-on: ubuntu-22.04
+    environment: renovate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - name: Json-Splitter
+        id: jsonSplitter
+        run: |
+          echo "Run script"
+          cd ./utils/repo-splitter/
+          ls .
+          ./json-splitter.sh
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: shared-json-files
+          path: |
+            jsonRepo1.json
+            jsonRepo2.json
+  dependabot-check:
     strategy:
       matrix:
-        configurationFile: ["./parallel_test1.json", "./parallel_test2.json"]
+        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"]
     uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
     with:
       configurationFile: ${{ matrix.configurationFile }}
@@ -20,15 +41,15 @@ jobs:
   call_workflow-2:
     strategy:
       matrix:
-        configurationFile: ["./parallel_test1.json", "./parallel_test2.json"]  
+        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
     uses: FilippoBau/Prodsectest/.github/workflows/pr-closer.yml@main
     with:
       configurationFile: ${{ matrix.configurationFile }}
     secrets: inherit
-  call_workflow-3:
+  run-renovate:
     strategy:
       matrix:
-        configurationFile: ["./parallel_test1.json", "./parallel_test2.json"]  
+        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
     uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
     with:
       configurationFile: ${{ matrix.configurationFile }}
