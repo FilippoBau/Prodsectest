@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Estrai il contenuto di repositories dal file json
-repositories=$(jq -r '.repositories[]' ../repo.json)
+repositories=$(jq -r '.repositories[]' ../../repo.json)
 
 # Conta il numero totale di elementi
 total=$(echo "$repositories" | wc -l)
