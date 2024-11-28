@@ -35,26 +35,47 @@ jobs:
     strategy:
       matrix:
         configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"]
-    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
-    with:
-      configurationFile: ${{ matrix.configurationFile }}
-    secrets: inherit 
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download JSON files
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-json-files
+      - name: Run dependabot check
+        uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
+        with:
+          configurationFile: ${{ matrix.configurationFile }}
+          secrets: inherit 
   pr-closer:
     needs: run-script
     strategy:
       matrix:
         configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
-    uses: FilippoBau/Prodsectest/.github/workflows/pr-closer.yml@main
-    with:
-      configurationFile: ${{ matrix.configurationFile }}
-    secrets: inherit
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download JSON files
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-json-files
+      - name: Run dependabot check
+        uses: FilippoBau/Prodsectest/.github/workflows/pr-closer.yml@main
+        with:
+          configurationFile: ${{ matrix.configurationFile }}
+          secrets: inherit 
   run-renovate:
     needs: [dependabot-check,pr-closer]
     strategy:
       matrix:
-        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"] 
-    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
-    with:
-      configurationFile: ${{ matrix.configurationFile }}
-      dryRun: ${{inputs.dryRun ||'null'}}
-    secrets: inherit
+        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download JSON files
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-json-files
+      - name: Run renovate
+        uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+        with:
+          configurationFile: ${{ matrix.configurationFile }}
+          dryRun: ${{inputs.dryRun ||'null'}}
+          secrets: inherit
