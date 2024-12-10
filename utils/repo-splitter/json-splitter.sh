@@ -24,3 +24,6 @@ jq --argjson list2 "$(echo "$list2" | jq -Rsc 'split("\n")[:-1]')" \
 ls
 
 pwd
+
+cat jsonRepo1.json
+cat jsonRepo2.json
