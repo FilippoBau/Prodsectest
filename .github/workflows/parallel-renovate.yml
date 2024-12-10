@@ -21,7 +21,7 @@ jobs:
           echo "Run script"
           cd ./utils/repo-splitter/
           ls .
-          chmod json-splitter.sh
+          chmod +x json-splitter.sh
           ./json-splitter.sh
       
       - name: Upload artifact
