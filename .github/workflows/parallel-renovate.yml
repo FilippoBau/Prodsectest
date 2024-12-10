@@ -29,8 +29,8 @@ jobs:
         with:
           name: shared-json-files
           path: |
-            jsonRepo1.json
-            jsonRepo2.json
+            utils/repo-splitter/jsonRepo1.json
+            utils/repo-splitter/jsonRepo2.json
   run-renovate:
     needs: [run-script]
     strategy:
