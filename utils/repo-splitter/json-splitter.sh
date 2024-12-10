@@ -20,3 +20,7 @@ jq --argjson list1 "$(echo "$list1" | jq -Rsc 'split("\n")[:-1]')" \
 # Crea il secondo file json
 jq --argjson list2 "$(echo "$list2" | jq -Rsc 'split("\n")[:-1]')" \
    '.repositories = $list2' templateRepo.json > jsonRepo2.json
+
+ls
+
+pwd
