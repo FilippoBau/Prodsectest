@@ -42,7 +42,7 @@ jobs:
         with:
           name: shared-json-files
       - name: Run renovate
-        uses: ./renovate
+        uses: ./.github/workflows/renovate
         with:
           configurationFile: ${{ matrix.configurationFile }}
           dryRun: ${{inputs.dryRun ||'null'}}
