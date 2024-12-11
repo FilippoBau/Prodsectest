@@ -10,6 +10,14 @@ inputs:
     description: "Run renovate in DryRun mode"
     required: true
     type: string
+  app-id:
+    description: "Configuration file"
+    required: true
+    type: string
+  private-key:
+    description: "Run renovate in DryRun mode"
+    required: true
+    type: string
 
 runs:
   steps:
@@ -52,9 +60,9 @@ runs:
       id: get_token
       uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
       with:
-        app-id: ${{ secrets.GH_APP_ID }}
+        app-id: ${{ inputs.app-id }}
         owner: ${{ github.repository_owner }}
-        private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}            
+        private-key: ${{ inputs.private-key }}            
     - name: Self-hosted Renovate
       uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
       env:
