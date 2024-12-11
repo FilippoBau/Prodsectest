@@ -1,4 +1,5 @@
 name: "Renovate action"
+shell: bash
 description: "An action to run renovate"
 inputs:
   configurationFile:
