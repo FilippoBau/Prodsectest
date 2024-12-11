@@ -1,5 +1,3 @@
-yaml
----
 name: "Renovate action"
 description: "An action to run renovate"
 inputs:
