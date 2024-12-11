@@ -11,11 +11,11 @@ inputs:
     required: true
     type: string
   app-id:
-    description: "Configuration file"
+    description: "Application id"
     required: true
     type: string
   private-key:
-    description: "Run renovate in DryRun mode"
+    description: "Private key"
     required: true
     type: string
 
