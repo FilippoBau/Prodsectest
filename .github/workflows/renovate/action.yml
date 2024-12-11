@@ -34,7 +34,6 @@ runs:
       shell: bash
       run: mkdir -p cache/renovate
     - name: Cache Renovate
-      shell: bash
       id: cache-renovate
       uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
       with:
