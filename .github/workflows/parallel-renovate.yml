@@ -50,6 +50,5 @@ jobs:
           configurationFile: ${{ matrix.configurationFile }}
           dryRun: ${{inputs.dryRun ||'null'}}
           app-id: ${{ secrets.GH_APP_ID }}
-          owner: ${{ github.repository_owner }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}  
           secrets: inherit
