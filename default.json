@@ -1,55 +1,83 @@
 {
-  "extends": [
-    "config:best-practices",
-    ":semanticCommitsDisabled",
-    ":disableDependencyDashboard"
-  ],
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "OER"
+    "extends": [
+        "config:best-practices",
+        ":semanticCommitsDisabled",
+        ":disableDependencyDashboard"
     ],
-    "prBodyNotes": [
-      "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
-    ],
-    "commitMessagePrefix": " ",
-    "commitMessageAction": "Bump ",
-    "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-    "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-    "commitMessageSuffix": " ",
-    "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-    "recreateWhen":"always"
-  },
-  "major": {
-    "enabled": false
-  },
-  "minor": {
-    "enabled": false
-  },
-  "patch": {
-    "enabled": false
-  },
-  "digest": {
-    "enabled": false
-  },
-  "lockFileMaintenance": {
-    "enabled": false
-  },
-  "rollback": {
-    "enabled": false
-  },
-  "bump": {
-    "enabled": false
-  },
-  "replacement": {
-    "enabled": false
-  },
-  "packageRules": [
-    {
-      "enabled": false,
-      "matchDepTypes": [
-        "devDependencies"
-      ]
-    }
-  ]
+    "pinDigests": true,
+    "vulnerabilityAlerts": {
+        "enabled": true,
+        "labels": [
+            "OER"
+        ],
+        "prBodyNotes": [
+            "For further information on security, please refer to the Confluence page"
+        ],
+        "commitMessagePrefix": " ",
+        "commitMessageAction": "Bump ",
+        "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
+        "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+        "commitMessageSuffix": " ",
+        "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+        "recreateWhen": "always"
+    },
+    "terraform": {
+        "enabled": true,
+        "major": {
+            "enabled": true
+        },
+        "minor": {
+            "enabled": true
+        },
+        "patch": {
+            "enabled": true
+        },
+        "digest": {
+            "enabled": true
+        },
+        "lockFileMaintenance": {
+            "enabled": true
+        },
+        "rollback": {
+            "enabled": true
+        },
+        "bump": {
+            "enabled": true
+        },
+        "replacement": {
+            "enabled": true
+        }
+    },
+    "major": {
+        "enabled": false
+    },
+    "minor": {
+        "enabled": false
+    },
+    "patch": {
+        "enabled": false
+    },
+    "digest": {
+        "enabled": false
+    },
+    "lockFileMaintenance": {
+        "enabled": false
+    },
+    "rollback": {
+        "enabled": false
+    },
+    "bump": {
+        "enabled": false
+    },
+    "replacement": {
+        "enabled": false
+    },
+    "packageRules": [
+        {
+            "enabled": false,
+            "matchDepTypes": [
+                "devDependencies"
+            ]
+        }
+    ]
 }
