@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/selfcare-onboarding","FilippoBau/pagopa-selfcare-frontend","FilippoBau/pn-b2b-client","FilippoBau/pn-frontend-e2e","FilippoBau/selfcare-infra"]
+  "repositories": ["FilippoBau/testgo"]
 }
