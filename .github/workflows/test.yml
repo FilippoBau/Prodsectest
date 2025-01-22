@@ -38,10 +38,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
-      - name: Download JSON files
-        uses: actions/download-artifact@v3
-        with:
-          name: shared-json-files
       - name: Run renovate
         uses: ./.github/workflows/renovate
         with:
