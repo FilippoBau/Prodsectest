@@ -42,20 +42,7 @@ jobs:
           dryRun: ${{inputs.dryRun ||'null'}}
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-  artifcat:
-    needs: [run-renovate]
-    runs-on: ubuntu-22.04
-    environment: renovate
-    steps:
-      - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
-      - name: Upload Artifact
-        if: ${{inputs.dryRun == 'full'}}
-        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
-        with:
-          name: my-artifact
-          path: /tmp/renovate/results.json
-          retention-days: 5
+
 
 
     
