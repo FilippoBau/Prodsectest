@@ -87,6 +87,7 @@ runs:
         
     - name: Extract File Name
       id: extract_filename
+      shell: bash
       run: echo "CONFIG_NAME=${{ inputs.configurationFile }}" | sed 's/.json$//' >> $GITHUB_ENV
 
     - name: Upload Artifact
