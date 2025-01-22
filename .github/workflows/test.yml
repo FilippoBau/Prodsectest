@@ -1,1 +1,51 @@
+name: Parallel prodcut 2
+on:
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: "Run renovate in DirtyRun mode"
+        required: false
+        default: "full"
+        type: string
 
+jobs:
+  run-script:
+    runs-on: ubuntu-22.04
+    environment: renovate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - name: Json-Splitter
+        id: jsonSplitter
+        run: |
+          echo "Run script"
+          cd ./utils/repo-splitter/
+          ls .
+          chmod +x json-splitter.sh
+          ./json-splitter.sh
+          echo "part1="./jsonRepo1.json" >> $GITHUB_OUTPUT
+          echo "part2="./jsonRepo2.json" >> $GITHUB_OUTPUT
+
+      
+
+  run-renovate:
+    needs: [run-script]
+    strategy:
+      matrix:
+        configurationFile: ["${{ needs.run-script.outputs.part1 }}", "${{ needs.run-script.outputs.part2 }}"]
+      fail-fast: false
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - name: Download JSON files
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-json-files
+      - name: Run renovate
+        uses: ./.github/workflows/renovate
+        with:
+          configurationFile: ${{ matrix.configurationFile }}
+          dryRun: ${{inputs.dryRun ||'null'}}
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}  
