@@ -1,9 +1,10 @@
-name: Parallel prodcut 2
+name: Parallel Product 2
+
 on:
   workflow_dispatch:
     inputs:
       dryRun:
-        description: "Run renovate in DirtyRun mode"
+        description: "Run renovate in DryRun mode"
         required: false
         default: "full"
         type: string
@@ -15,6 +16,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
       - name: Json-Splitter
         id: jsonSplitter
         run: |
@@ -23,8 +25,9 @@ jobs:
           ls .
           chmod +x json-splitter.sh
           ./json-splitter.sh
-          echo "part1="./jsonRepo1.json" >> $GITHUB_OUTPUT
-          echo "part2="./jsonRepo2.json" >> $GITHUB_OUTPUT
+          echo "part1=./jsonRepo1.json" >> $GITHUB_OUTPUT
+          echo "part2=./jsonRepo2.json" >> $GITHUB_OUTPUT
+
   run-renovate:
     needs: [run-script]
     strategy:
@@ -35,14 +38,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
       - name: Run renovate
         uses: ./.github/workflows/renovate
         with:
           configurationFile: ${{ matrix.configurationFile }}
-          dryRun: ${{inputs.dryRun ||'null'}}
+          dryRun: ${{ inputs.dryRun }}
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-
-
 
     
