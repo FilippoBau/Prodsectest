@@ -43,6 +43,7 @@ jobs:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
   artifcat:
+    needs: [run-renovate]
     runs-on: ubuntu-22.04
     environment: renovate
     steps:
