@@ -84,10 +84,16 @@ runs:
         renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
         configurationFile: ${{ inputs.configurationFile }}
         token: '${{ steps.get_token.outputs.token }}'
+        
+    - name: Extract File Name
+      id: extract_filename
+      run: echo "CONFIG_NAME=${{ inputs.configurationFile%.json }}" | sed 's/.json$//' >> $GITHUB_ENV
+
     - name: Upload Artifact
-      if: ${{inputs.dryRun == 'full'}}
+      if: ${{ inputs.dryRun == 'full' }}
       uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
       with:
-        name: "my-artifact-${{ inputs.configurationFile%.json }}"
+        name: "my-artifact-${{ env.CONFIG_NAME }}"
         path: /tmp/renovate/results.json
         retention-days: 5
+
