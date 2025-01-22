@@ -1,4 +1,4 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/pn-b2b-client"]
+  "repositories": ["FilippoBau/testgo"]
 }
