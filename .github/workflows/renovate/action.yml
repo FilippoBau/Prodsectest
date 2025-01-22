@@ -84,10 +84,4 @@ runs:
         renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
         configurationFile: ${{ inputs.configurationFile }}
         token: '${{ steps.get_token.outputs.token }}'
-    - name: Upload Artifact
-      if: ${{inputs.dryRun == 'full'}}
-      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
-      with:
-        name: my-artifact
-        path: /tmp/renovate/results.json
-        retention-days: 5
+
