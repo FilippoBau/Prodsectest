@@ -87,7 +87,7 @@ runs:
         
     - name: Extract File Name
       id: extract_filename
-      run: echo "CONFIG_NAME=${{ inputs.configurationFile%.json }}" | sed 's/.json$//' >> $GITHUB_ENV
+      run: echo "CONFIG_NAME=${{ inputs.configurationFile }}" | sed 's/.json$//' >> $GITHUB_ENV
 
     - name: Upload Artifact
       if: ${{ inputs.dryRun == 'full' }}
