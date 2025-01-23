@@ -1,5 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/io-services-cms"]
+  "repositories": ["FilippoBau/pagopa-checkout-fe"]
 }
     
