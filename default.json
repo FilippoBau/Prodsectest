@@ -1,15 +1,27 @@
 {
   "extends": [
-    "config:best-practices", ":semanticCommitsDisabled"
+    "config:best-practices",
+    ":semanticCommitsDisabled",
+    ":disableDependencyDashboard"
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
+    "label": [
+      "OER"
+    ],
     "prBodyNotes": [
       "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
-    ]
+    ],
+    "commitMessagePrefix": " ",
+    "commitMessageAction": "Bump ",
+    "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
+    "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+    "commitMessageSuffix": " ",
+    "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+    "recreateWhen":"always"
   },
   "major": {
-    "enabled": true
+    "enabled": false
   },
   "minor": {
     "enabled": false
@@ -34,12 +46,10 @@
   },
   "packageRules": [
     {
-      "matchUpdateTypes": ["vulnerability"],
-      "labels": ["OER"]
-    },
-    {
       "enabled": false,
-      "matchDepTypes": ["devDependencies"]
+      "matchDepTypes": [
+        "devDependencies"
+      ]
     }
   ]
 }
