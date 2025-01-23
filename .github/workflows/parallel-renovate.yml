@@ -35,7 +35,7 @@ jobs:
     needs: [run-script]
     strategy:
       matrix:
-        configurationFile: ["./jsonRepo1.json", "./jsonRepo2.json"]
+        configurationFile: ["jsonRepo1.json", "jsonRepo2.json"]
       fail-fast: false
     runs-on: ubuntu-22.04
     steps:
