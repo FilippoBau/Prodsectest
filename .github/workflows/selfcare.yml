@@ -17,8 +17,8 @@ on:
         
 jobs:
   call_workflow-3:
-    uses: pagopa/eng-renovate/.github/workflows/action-renovate.yml@main
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dryRun == 'full' }}
+    uses: pagopa/eng-renovate/.github/workflows/renovate.yml@main
+    if: github.event.inputs.dryRun == 'full' }}
     with:
       configurationFile: "./dryRun-renovate.json"
       dryRun: 'full'
@@ -26,7 +26,7 @@ jobs:
     secrets: inherit
   call_workflow-4:
     uses: pagopa/eng-renovate/.github/workflows/renovate.yml@main
-    if: ${{ github.event_name == 'schedule' || github.event.inputs.dryRun != 'full' }}
+    if: github.event.inputs.dryRun != 'full' }}
     with:
       configurationFile: "./selfcare-renovate.json"
       dryRun: ${{ inputs.dryRun || 'null' }}
