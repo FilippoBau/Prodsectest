@@ -13,8 +13,12 @@ jobs:
   run-script:
     runs-on: ubuntu-22.04
     environment: renovate
+    outputs:
+      output1: ${{ steps.jsonSplitter.outputs.part1 }}
+      output2: ${{ steps.jsonSplitter.outputs.part2 }}
     steps:
       - name: Checkout
+      - id: step1
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
       - name: Json-Splitter
@@ -25,14 +29,14 @@ jobs:
           ls .
           chmod +x json-splitter.sh
           ./json-splitter.sh
-          echo "part1=./jsonRepo1.json" >> $GITHUB_OUTPUT
-          echo "part2=./jsonRepo2.json" >> $GITHUB_OUTPUT
+          echo "part1=./jsonRepo1.json" >> "$GITHUB_OUTPUT"
+          echo "part2=./jsonRepo2.json" >> "$GITHUB_OUTPUT"
 
   run-renovate:
     needs: [run-script]
     strategy:
       matrix:
-        configurationFile: ["${{ needs.run-script.outputs.part1 }}", "${{ needs.run-script.outputs.part2 }}"]
+        configurationFile: ["${{ needs.run-script.outputs.output1 }}", "${{ needs.run-script.outputs.output2 }}"]
       fail-fast: false
     runs-on: ubuntu-22.04
     steps:
