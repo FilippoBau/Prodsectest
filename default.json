@@ -4,49 +4,42 @@
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": [
-      "OER"
-    ],
     "prBodyNotes": [
       "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
-    ],
-    "commitMessagePrefix": " ",
-    "commitMessageAction": "Bump ",
-    "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
-    "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-    "commitMessageSuffix": " ",
-    "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    ]
   },
   "major": {
-        "enabled": true
-      },
+    "enabled": true
+  },
   "minor": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "patch": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "digest": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "lockFileMaintenance": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "rollback": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "bump": {
-        "enabled": false
-      },
+    "enabled": false
+  },
   "replacement": {
-        "enabled": false
-    },
+    "enabled": false
+  },
   "packageRules": [
     {
+      "matchUpdateTypes": ["vulnerability"],
+      "labels": ["OER"]
+    },
+    {
       "enabled": false,
-      "matchDepTypes": [
-        "devDependencies"
-      ]
+      "matchDepTypes": ["devDependencies"]
     }
   ]
 }
