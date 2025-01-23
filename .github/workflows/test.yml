@@ -46,6 +46,7 @@ jobs:
       - name: Json
         run: |
           echo ${{ matrix.configurationFile }}
+          ls .
 
 
       - name: Run renovate
