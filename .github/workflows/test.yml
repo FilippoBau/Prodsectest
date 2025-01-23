@@ -18,7 +18,7 @@ jobs:
       output2: ${{ steps.jsonSplitter.outputs.part2 }}
     steps:
       - name: Checkout
-      - id: step1
+        id: step1
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
       - name: Json-Splitter
