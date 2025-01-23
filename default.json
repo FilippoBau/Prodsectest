@@ -6,7 +6,7 @@
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["OER"],
+    "labels": ["OER","wontfix"],
     "prBodyNotes": [
       "For further information on security, please refer to the Confluence page [link](https://pagopa.atlassian.net/wiki/spaces/ProdSec/overview)"
     ],
