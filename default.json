@@ -1,8 +1,6 @@
 {
   "extends": [
-    "config:best-practices",
-    ":semanticCommitsDisabled",
-    ":disableDependencyDashboard"
+    "config:best-practices", ":semanticCommitsDisabled"
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
@@ -17,33 +15,32 @@
     "commitMessageTopic": "{{depName}} from {{currentVersion}} ",
     "commitMessageExtra": "to {{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
     "commitMessageSuffix": " ",
-    "branchTopic": "{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-    "recreateWhen":"always"
+    "branchTopic":"{{depName}}-to-{{#if newVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
   },
   "major": {
-    "enabled": false
-  },
+        "enabled": true
+      },
   "minor": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "patch": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "digest": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "lockFileMaintenance": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "rollback": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "bump": {
-    "enabled": false
-  },
+        "enabled": false
+      },
   "replacement": {
-    "enabled": false
-  },
+        "enabled": false
+    },
   "packageRules": [
     {
       "enabled": false,
