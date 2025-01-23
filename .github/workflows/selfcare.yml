@@ -1,33 +1,35 @@
-name: Selfcare 
+name: Selfcare
+
 on:
   workflow_dispatch:
     inputs:
       dryRun:
-        description: "Run renovate in DirtyRun mode"
+        description: "Run renovate in Dryrun mode"
         required: false
-        default: "null"
+        default: "full"
+        type: string
+      debug:
+        description: "Run renovate in debug mode"
+        required: false
+        default: "INFO"
         type: string
 
+        
 jobs:
-#  call_workflow-0:
-#    uses: FilippoBau/Prodsectest/.github/workflows/repo-list.yml@main
-#    with:
-#      configurationFile: "Selfcare/renovate.json"
-#    secrets: inherit
-  call_workflow-1:
-    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
-    with:
-      configurationFile: "./selfcare-renovate.json"
-    secrets: inherit 
-  call_workflow-2:
-    uses: FilippoBau/Prodsectest/.github/workflows/pr-closer.yml@main
-    with:
-      configurationFile: "./selfcare-renovate.json"
-    secrets: inherit
   call_workflow-3:
-    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
+    uses: pagopa/eng-renovate/.github/workflows/action-renovate.yml@main
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dryRun == 'full' }}
+    with:
+      configurationFile: "./dryRun-renovate.json"
+      dryRun: 'full'
+      debug:  ${{ github.event.inputs.debug || 'INFO' }}
+    secrets: inherit
+  call_workflow-4:
+    uses: pagopa/eng-renovate/.github/workflows/action-renovate.yml@main
+    if: ${{ github.event_name == 'schedule' || github.event.inputs.dryRun != 'full' }}
     with:
       configurationFile: "./selfcare-renovate.json"
-      dryRun: ${{inputs.dryRun ||'null'}}
+      dryRun: ${{ inputs.dryRun || 'null' }}
+      debug:  ${{ github.event.inputs.debug || 'INFO' }}
     secrets: inherit
     
