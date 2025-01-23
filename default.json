@@ -5,6 +5,7 @@
     ":disableDependencyDashboard"
   ],
   "vulnerabilityAlerts": {
+    "enabled": true,
     "labels": [
       "OER"
     ],
