@@ -1,0 +1,84 @@
+name: "Renovate Composite Action"
+description: "Run Renovate with caching and configuration validation"
+inputs:
+  configurationFile:
+    description: "Configuration file"
+    required: true
+  dryRun:
+    description: "Run renovate in DryRun mode"
+    required: true
+  debug:
+    description: "Run renovate in Debug mode"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      
+    - name: Validate Renovate JSON
+      run: jq type $CONF
+      env:
+        CONF: ${{ inputs.configurationFile }}
+      
+    - name: Read Renovate Version and Hash
+      id: read_version_hash
+      run: |
+        VERSION=$(jq -r '.renovateVersion' renovate-version.json)
+        HASH=$(jq -r '.renovateHash' renovate-version.json)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "HASH=$HASH" >> $GITHUB_ENV
+    
+    - name: Ensure Cache Directory Exists
+      run: mkdir -p cache/renovate
+
+    - name: Cache Renovate
+      id: cache-renovate
+      uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
+      with:
+        path: cache/renovate
+        key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
+        restore-keys: |
+          renovate-cache-${{ runner.os }}-
+
+    - name: Download or Load Renovate Image
+      if: steps.cache-renovate.outputs.cache-hit != 'true'
+      run: |
+        docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
+        docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
+      else:
+        run: docker load -i cache/renovate/renovate.tar
+
+    - name: Get token
+      id: get_token
+      uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
+      with:
+        app-id: ${{ secrets.GH_APP_ID }}
+        owner: ${{ github.repository_owner }}
+        private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+    - name: Self-hosted Renovate
+      uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
+      env:
+        RENOVATE_USERNAME: "renovate-pagopa[bot]"
+        RENOVATE_GIT_AUTHOR: "renovate-pagopa <164534245+renovate-pagopa[bot]@users.noreply.github.com>"
+        RENOVATE_PLATFORM_COMMIT: "true"
+        RENOVATE_ONBOARDING: "false"
+        RENOVATE_REQUIRE_CONFIG: "optional"
+        RENOVATE_PR_HOURLY_LIMIT: 0
+        RENOVATE_PR_CONCURRENT_LIMIT: 5
+        RENOVATE_DRY_RUN: ${{ inputs.dryRun }}
+        RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
+        LOG_LEVEL: ${{ inputs.debug }}
+      with:
+        renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
+        configurationFile: ${{ inputs.configurationFile }}
+        token: '${{ steps.get_token.outputs.token }}'
+
+    - name: Upload Artifact
+      if: ${{ inputs.dryRun == 'full' }}
+      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
+      with:
+        name: renovate-results
+        path: /tmp/renovate/results.json
+        retention-days: 5
