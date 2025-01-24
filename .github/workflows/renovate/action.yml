@@ -44,14 +44,16 @@ runs:
         restore-keys: |
           renovate-cache-${{ runner.os }}-
 
-    - name: Download or Load Renovate Image
+    - name: Download Renovate Image
       if: steps.cache-renovate.outputs.cache-hit != 'true'
       shell: bash
       run: |
         docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
         docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
-      else:
-        run: docker load -i cache/renovate/renovate.tar
+    - name: Load Renovate Image
+      if: steps.cache-renovate.outputs.cache-hit == 'true'
+      shell: bash
+      run: docker load -i cache/renovate/renovate.tar
 
     - name: Get token
       id: get_token
