@@ -17,12 +17,14 @@ runs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
       
     - name: Validate Renovate JSON
+      shell: bash
       run: jq type $CONF
       env:
         CONF: ${{ inputs.configurationFile }}
       
     - name: Read Renovate Version and Hash
       id: read_version_hash
+      shell: bash
       run: |
         VERSION=$(jq -r '.renovateVersion' renovate-version.json)
         HASH=$(jq -r '.renovateHash' renovate-version.json)
@@ -30,6 +32,7 @@ runs:
         echo "HASH=$HASH" >> $GITHUB_ENV
     
     - name: Ensure Cache Directory Exists
+      shell: bash
       run: mkdir -p cache/renovate
 
     - name: Cache Renovate
@@ -43,6 +46,7 @@ runs:
 
     - name: Download or Load Renovate Image
       if: steps.cache-renovate.outputs.cache-hit != 'true'
+      shell: bash
       run: |
         docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
         docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
@@ -75,10 +79,17 @@ runs:
         configurationFile: ${{ inputs.configurationFile }}
         token: '${{ steps.get_token.outputs.token }}'
 
+    - name: Extract File Name
+      id: extract_filename
+      shell: bash
+      run: |
+           echo "CONFIG_NAME=${{ inputs.configurationFile }}" | sed 's/.json$//' >> $GITHUB_ENV
+           echo ${{ inputs.configurationFile }}
+           
     - name: Upload Artifact
       if: ${{ inputs.dryRun == 'full' }}
       uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
       with:
-        name: renovate-results
+        name: my-artifact-${{ env.CONFIG_NAME }}
         path: /tmp/renovate/results.json
         retention-days: 5
