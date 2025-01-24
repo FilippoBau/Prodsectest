@@ -30,7 +30,7 @@ list1=$(echo "$repositories" | head -n "$split")
 list2=$(echo "$repositories" | tail -n +$((split + 1)))
 
 # Create the first JSON file
-jq --argjson list1 "$(echo "$list1" | jq -Rsc 'split("\n")[:-1]')" '.repositories = $list1' templateRepo.json > "${json_file%.json}_part1.json"
+jq --argjson list1 "$(echo "$list1" | jq -Rsc 'split("\n")[:-1]')" '.repositories = $list1' templateRepo.json > jsonRepo1.json
 
 # Create the second JSON file
-jq --argjson list2 "$(echo "$list2" | jq -Rsc 'split("\n")[:-1]')" '.repositories = $list2' templateRepo.json > "${json_file%.json}_part2.json"
+jq --argjson list2 "$(echo "$list2" | jq -Rsc 'split("\n")[:-1]')" '.repositories = $list2' templateRepo.json > jsonRepo2.json
