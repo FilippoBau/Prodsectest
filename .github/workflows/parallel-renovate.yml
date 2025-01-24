@@ -50,5 +50,5 @@ jobs:
         with:
           configurationFile: ${{ matrix.configurationFile }}
           dryRun: ${{inputs.dryRun ||'null'}}
-          app-id: ${{ secrets.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}  
+          debug: ${{ inputs.debug ||'null'}}
+         
