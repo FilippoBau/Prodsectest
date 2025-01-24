@@ -28,7 +28,7 @@ jobs:
           echo "Run script"
           cd ./utils/splitter/
           chmod +x splitter.sh
-          ./splitter.sh $CONF
+          ./splitter.sh ../../$CONF
         env:
           CONF: ${{ inputs.configurationFile }}
       
