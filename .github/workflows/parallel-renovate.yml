@@ -1,7 +1,7 @@
 name: Parallel prodcut
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       configurationFile:
         description: "Configuration file"
