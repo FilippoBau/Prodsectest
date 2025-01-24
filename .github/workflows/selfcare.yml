@@ -16,17 +16,9 @@ on:
 
         
 jobs:
-  call_workflow-3:
-    uses: FilippoBau/Prodsectest/.github/workflows/renovate.yml@main
-    if: ${{ github.event.inputs.dryRun == 'full' }}
-    with:
-      configurationFile: "./dryRun-renovate.json"
-      dryRun: 'full'
-      debug:  ${{ github.event.inputs.debug || 'INFO' }}
-    secrets: inherit
+
   call_workflow-4:
     uses: FilippoBau/Prodsectest/.github/workflows/parallel-renovate.yml@main
-    if: ${{ github.event.inputs.dryRun != 'full' }}
     with:
       configurationFile: "./selfcare-renovate.json"
       dryRun: ${{ inputs.dryRun || 'null' }}
