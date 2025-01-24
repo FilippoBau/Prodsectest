@@ -1,13 +1,20 @@
 name: Parallel prodcut
+
 on:
   workflow_dispatch:
     inputs:
-      dryRun:
-        description: "Run renovate in DirtyRun mode"
-        required: false
-        default: "full"
+      configurationFile:
+        description: "Configuration file"
+        required: true
         type: string
-
+      dryRun:
+        description: "Run renovate in DryRun mode"
+        required: true
+        type: string
+      debug:
+        description: "Run renovate in Debug mode"
+        required: true
+        type: string
 jobs:
   run-script:
     runs-on: ubuntu-22.04
@@ -19,10 +26,11 @@ jobs:
         id: jsonSplitter
         run: |
           echo "Run script"
-          cd ./utils/repo-splitter/
-          ls .
-          chmod +x json-splitter.sh
-          ./json-splitter.sh
+          cd ./utils/splitter/
+          chmod +x splitter.sh
+          ./splitter.sh $CONF
+        env:
+          CONF: ${{ inputs.configurationFile }}
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
