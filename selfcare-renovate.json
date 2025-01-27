@@ -1,5 +1,5 @@
 {
   "extends": ["github>FilippoBau/Prodsectest"],
-  "repositories": ["FilippoBau/pagopa-checkout-fe"]
+  "repositories": ["FilippoBau/le-azure-acme-tiny"]
 }
     
