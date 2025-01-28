@@ -83,7 +83,7 @@ runs:
         # Dirty run configuration
         RENOVATE_DRY_RUN: ${{inputs.dryRun}}
         RENOVATE_LOG_FILE: '/tmp/renovate/results.json'
-        #LOG_LEVEL: "DEBUG"
+        LOG_LEVEL: ${{inputs.debug}}
       with:
         renovate-version: ${{ env.VERSION }}@sha256:${{ env.HASH }}
         configurationFile: ${{ inputs.configurationFile }}
