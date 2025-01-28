@@ -17,6 +17,12 @@ on:
         
 jobs:
 
+  call_workflow-3:
+    uses: FilippoBau/Prodsectest/.github/workflows/dependabot-check.yml@main
+    with:
+      configurationFile: "./selfcare-renovate.json"
+    secrets: inherit
+
   call_workflow-4:
     uses: FilippoBau/Prodsectest/.github/workflows/parallel-renovate.yml@main
     with:
