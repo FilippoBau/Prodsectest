@@ -27,7 +27,7 @@ jobs:
         id: read_renovate
         run: |
           gh api --method POST  -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/FilippoBau/le-azure-acme-tiny/issues/3/labels  -f "labels[]=OERR"
-          gh api  --method POST   -H "Accept: application/vnd.github+json"   -H "X-GitHub-Api-Version: 2022-11-28"   /repos/FilippoBau/le-azure-acme-tiny/labels    -f "name=bug" -f "description=Something isn't working" -f "color=f29513"
+          gh api  --method POST   -H "Accept: application/vnd.github+json"   -H "X-GitHub-Api-Version: 2022-11-28"   /repos/FilippoBau/le-azure-acme-tiny/labels    -f "name=buggg" -f "description=Something isn't working" -f "color=f29513"
           repositories=$(jq -r '.repositories[]' $CONF)
           echo $repositories
           for repo in ${repositories[@]}; do
