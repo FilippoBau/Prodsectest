@@ -41,14 +41,8 @@ runs:
           ./json_repository_validator.sh ../../$CONF
       env:
         CONF: ${{ inputs.configurationFile }}
-    - name: STOP_WORKFLOW evaluation
-      shell: bash
-      run: |
-        if [[ "${{ steps.repo_counter_check.outputs.STOP_WORKFLOW }}" == "true" ]]; then
-          echo "Exiting..."
-          exit 0
-        fi
     - name: Read Renovate Version and Hash
+      if: ${{ steps.repo_counter_check.outputs.STOP_WORKFLOW }} != "true"
       shell: bash
       id: read_version_hash
       run: |
