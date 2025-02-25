@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cat $1
-
 # Estrai la lunghezza dell'array "repositories" con jq
 count=$(cat $1 | jq '.repositories | length')
 
