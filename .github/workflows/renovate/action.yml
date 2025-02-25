@@ -51,9 +51,11 @@ runs:
         echo "VERSION=$VERSION" >> $GITHUB_ENV
         echo "HASH=$HASH" >> $GITHUB_ENV    
     - name: Ensure Cache Directory Exists
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       shell: bash
       run: mkdir -p cache/renovate
     - name: Cache Renovate
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       id: cache-renovate
       uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
       with:
@@ -61,15 +63,16 @@ runs:
         key: renovate-cache-${{ runner.os }}-${{ env.VERSION }}-${{ env.HASH }}
         restore-keys: |
           renovate-cache-${{ runner.os }}- 
-    - if: steps.cache-renovate.outputs.cache-hit != 'true'
+    - if: steps.cache-renovate.outputs.cache-hit != 'true' && steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       shell: bash
       run: |
             docker pull ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
             docker save -o cache/renovate/renovate.tar ghcr.io/renovatebot/renovate@sha256:${{ env.HASH }}
-    - if: steps.cache-renovate.outputs.cache-hit == 'true'
+    - if: steps.cache-renovate.outputs.cache-hit == 'true' && steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       shell: bash
       run: docker load -i cache/renovate/renovate.tar
     - name: Get token
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       id: get_token
       uses: actions/create-github-app-token@78e5f2ddc08efcb88fbbee6cfa3fed770ba550c3
       with:
@@ -77,6 +80,7 @@ runs:
         owner: ${{ github.repository_owner }}
         private-key: ${{ inputs.private-key }}            
     - name: Self-hosted Renovate
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       uses: renovatebot/github-action@23b01dbf6f38965076a36aff87f802263164f204
       env:
         # Username for GitHub authentication (should match GitHub App name + [bot])
@@ -100,13 +104,14 @@ runs:
         configurationFile: ${{ inputs.configurationFile }}
         token: '${{ steps.get_token.outputs.token }}'
     - name: Extract File Name
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       id: extract_filename
       shell: bash
       run: |
            echo "CONFIG_NAME=${{ inputs.configurationFile }}" | sed 's/.json$//' >> $GITHUB_ENV
            echo ${{ inputs.configurationFile }}
     - name: Upload Artifact
-      if: ${{ inputs.dryRun == 'full' }}
+      if: ${{ inputs.dryRun == 'full' }} && steps.repo_counter_check.outputs.STOP_WORKFLOW != 'true'
       uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
       with:
         name: my-artifact-${{ env.CONFIG_NAME }}
