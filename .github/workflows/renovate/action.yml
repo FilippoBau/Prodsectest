@@ -42,7 +42,7 @@ runs:
       env:
         CONF: ${{ inputs.configurationFile }}
     - name: Read Renovate Version and Hash
-      if: ${{ steps.repo_counter_check.outputs.STOP_WORKFLOW }} != "true"
+      if: steps.repo_counter_check.outputs.STOP_WORKFLOW != "true"
       shell: bash
       id: read_version_hash
       run: |
