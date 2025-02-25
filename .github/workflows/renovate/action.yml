@@ -37,7 +37,7 @@ runs:
           echo "Checking repositories"
           cd ./utils/splitter/
           chmod +x json_repository_validator.sh
-          ./json_repository_validator.sh ../../../$CONF
+          ./json_repository_validator.sh ../../$CONF
       env:
         CONF: ${{ inputs.configurationFile }}
     - name: Read Renovate Version and Hash
