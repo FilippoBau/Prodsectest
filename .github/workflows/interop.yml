@@ -7,6 +7,11 @@ on:
         required: false
         default: "full"
         type: string
+      debug:
+        description: "Run renovate in Debug mode"
+        required: true
+        default: INFO
+        type: string
 
 jobs:
   call_workflow-1:
