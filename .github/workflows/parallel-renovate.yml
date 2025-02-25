@@ -2,6 +2,19 @@ name: Parallel prodcut
 
 on:
   workflow_dispatch:
+    inputs:
+      configurationFile:
+        description: "Configuration file"
+        required: true
+        type: string
+      dryRun:
+        description: "Run renovate in DryRun mode"
+        required: true
+        type: string
+      debug:
+        description: "Run renovate in Debug mode"
+        required: true
+        type: string
   workflow_call:
     inputs:
       configurationFile:
