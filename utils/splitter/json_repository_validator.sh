@@ -6,5 +6,8 @@ count=$(cat $1 | jq '.repositories | length')
 # Controlla se ci sono almeno 1 elemento
 if [[ "$count" -le 1 ]]; then
     echo "No repository found in the configuration file"
-    exit 0
+    echo "STOP_WORKFLOW=true" >> "$GITHUB_OUTPUT"
+else 
+    echo "At least one repo is present in the configuration file"
+    echo "STOP_WORKFLOW=false" >> "$GITHUB_OUTPUT"
 fi
