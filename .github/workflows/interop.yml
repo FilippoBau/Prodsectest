@@ -10,7 +10,7 @@ on:
       debug:
         description: "Run renovate in Debug mode"
         required: true
-        default: INFO
+        default: "INFO"
         type: string
 
 jobs:
@@ -29,5 +29,6 @@ jobs:
     with:
       configurationFile: "./interop-renovate.json"
       dryRun: ${{inputs.dryRun ||'null'}}
+      debug: ${{inputs.debug}}
     secrets: inherit
 
