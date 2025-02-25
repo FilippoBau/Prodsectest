@@ -26,6 +26,15 @@ jobs:
         run: jq type $CONF
         env:
           CONF: ${{ inputs.configurationFile }}
+      - name: Check number of repositories
+        shell: bash
+        run: |
+            echo "Checking repositories"
+            cd ./utils/splitter/
+            chmod +x json_repository_validator.sh
+            ./json_repository_validator.sh ../../../$CONF
+        env:
+          CONF: ${{ inputs.configurationFile }}
       - name: Read Renovate Version and Hash
         id: read_version_hash
         run: |
